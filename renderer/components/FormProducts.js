@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { useState} from 'react';
 import Axios from 'axios';
-import { MediumInput, ShortInput,LargeInput } from "./inputs";
+import { MediumInput, ShortInput,LargeInput,InputSelect} from "./inputs";
 
 const Content=styled.div`
     display:flex;
@@ -88,14 +88,20 @@ export function FormProducts(){
             <Header><a>Cadastrar Produto</a><a onClick={CloseModal} style={{cursor: 'pointer',fontSize:'18px'}}>X</a></Header>
             <form  style={{width:'100%'}} id="form">
             <InputDiv>
-                <div><label for="cod">Cod. <ShortInput type="text" name="cod" onChange={handleChangeValues} /></label></div>
-                <div><label for="nome">Nome Produto <LargeInput type="text" name="nome" onChange={handleChangeValues} /></label></div>
-                <div><label for="qtd">Quantidade <ShortInput type="text" name="qtd" onChange={handleChangeValues} /></label></div>
+                <div><a for="cod">Cod. </a><ShortInput type="text" name="cod" onChange={handleChangeValues} /></div>
+                <div><a for="nome">Nome Produto </a><LargeInput type="text" name="nome" onChange={handleChangeValues} /></div>
+                <div><a for="qtd">Quantidade </a><ShortInput type="text" name="qtd" onChange={handleChangeValues} /></div>
             </InputDiv>
             <InputDiv>
-            <div><label for="category">Categoria <MediumInput type="text" name="category" onChange={handleChangeValues} /></label></div>
-            <div><label for="preco">Preço <ShortInput type="text" name="preco" onChange={handleChangeValues} /></label></div>
-            <div><label for="fornecedor">Fornecedor<MediumInput type="text" name="fornecedor" onChange={handleChangeValues} /></label></div>
+            <div><a for="category">Categoria </a><InputSelect type="text" name="category" onChange={handleChangeValues} >
+                <option>Bermuda</option>
+                <option>Blusa</option>
+                <option>Camiseta</option>
+                <option>Calça</option>
+                <option>Vestido</option>
+                </InputSelect></div>
+            <div><a for="preco">Preço </a><ShortInput type="text" name="preco" onChange={handleChangeValues} /></div>
+            <div><a for="fornecedor">Fornecedor</a><MediumInput type="text" name="fornecedor" onChange={handleChangeValues} /></div>
             </InputDiv> 
             </form>
             <ButtonDiv>

@@ -13,12 +13,14 @@ const Content =styled.div`
     height:100vh;
     display:flex;
     flex-direction:row;
+    background-color:white;
 `
 const Body =styled.div`
     width:80vw;
     height:100vh;
     display:flex;
     flex-direction:column;
+    background-color:white;
 `
 
 
