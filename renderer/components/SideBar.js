@@ -44,7 +44,7 @@ const Bar=styled.hr`
     height:1px;
 `
 const Images=styled.img`
-    padding-block:0.5vh;
+    
     height:50px;
     width:50px;
 `
@@ -55,7 +55,7 @@ export function SideBar(){
     
     return(
         <BarraLateral >
-            <DivImage><Images  alt="Logo da Kipper Jeans"/>
+            <DivImage><Images src="https://i.imgur.com/kb4uzCD.png" alt="logo kiper jeans"/>
             </DivImage>
             <Bar/>
             <ul style={{padding:0,margin:0}}>

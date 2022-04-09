@@ -129,15 +129,19 @@ export function FormSells() {
         <Content>
             
             <Header><a>Cadastrar Venda</a><a onClick={CloseModal} style={{ cursor: 'pointer', fontSize: '18px' }}>X</a></Header>
-            <button onClick={onAddBtnClick}>AAAAAAA</button>
+
             <form style={{ width: '100%' }} id="form" onSubmit={()=>preventDefault()}>
                 <InputDiv>
-                    <div><label for="doc">CPF Cliente <ShortInput type="text" name="doc" onChange={handleChangeValues} /></label></div>
-                    <div><label for="nome">Nome <LargeInput type="text" name="nome" onChange={handleChangeValues} /></label></div>
-                    <div><label for="data">Data <ShortInput type="date" name="data" onChange={handleChangeValues} /></label></div>
+                    <div><a for="doc">CPF Cliente </a><ShortInput type="text" name="doc" onChange={handleChangeValues} /></div>
+                    <div><a for="nome">Nome </a><LargeInput type="text" name="nome" onChange={handleChangeValues} /></div>
+                    <div><a for="data">Data </a><ShortInput type="date" name="data" onChange={handleChangeValues} /></div>
                 </InputDiv>
-                <div style={{overflowY: 'auto', maxHeight:'25vh'}}>{ProductList}</div>
                 
+                
+            </form>
+            <button onClick={onAddBtnClick}>AAAAAAA</button>
+            <form>
+                <div style={{overflowY: 'auto', maxHeight:'25vh'}}>{ProductList}</div>
             </form>
             <ButtonDiv>
                 <button onClick={() => handleClickButton()}><a style={{ fontSize: '16px', color: 'black   ', textAlign: 'center' }}>Salvar Produto</a></button>
