@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+, "components/Modal.js", "components/inputs.js", "components/Products.js", "components/NavBar.js", "components/SideBar.js", "components/SideBar.js"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
