@@ -29,7 +29,7 @@ export function Sells(){
     return(
         <Container>
             <Card style={{position: 'fixed',width: '80vw',backgroundColor: 'white'}}><FontAwesomeIcon icon={faTrashCan}  size="lg"/><a>ID</a><a>Nome</a><a>Valor Total</a><a>Data</a></Card>
-            <div style={{marginTop:'4vw',}}>{typeof card !== "undefined" && card.map((value)=>{return <Card><input type="checkbox" /><a>{value.id}</a><a>{value.produtos}</a><a>{value.valor}</a><a>{value.data}</a></Card>})}</div>
+            <div style={{marginTop:'4vw',}}>{typeof card !== "undefined" && card.map((value)=>{return <Card key={value.id}><input type="checkbox" /><a>{value.id}</a><a>{value.produtos}</a><a>{value.valor}</a><a>{value.data}</a></Card>})}</div>
             
         </Container>
     )

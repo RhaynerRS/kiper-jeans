@@ -83,6 +83,7 @@ const DivProducts=styled.div`
 `
 var arrayProducts = []
 var valorTotalProdutos = 0;
+var maxLength =10;
 
 export function FormSells() {
     
@@ -101,10 +102,12 @@ export function FormSells() {
             data: date,
             valorTotal: valor
         }).then((response) => { console.log(response) })
+
+        valorTotalProdutos=0;
+        arrayProducts=[];
     }
     
     const [ProductList, SetProducList] = useState([])
-
     
     const onAddBtnClick = () => {
             if (prod!==undefined){
@@ -129,18 +132,26 @@ export function FormSells() {
         SetProducList([])
         }
     }
+    function ChangeLength(){
+        let selectProd=document.getElementById("prod")
+        typeof prod !== "undefined" && prod.map((value) => {if(value.id==selectProd.value){
+            value.qtd>10?maxLength=10:maxLength=value.qtd
+        }})
+    }
     return (
         <Content>
             <Header><a>Cadastrar Venda</a><a onClick={CloseModal} style={{ cursor: 'pointer', fontSize: '18px' }}>X</a></Header>
             <form style={{ width: '100%' }} id="form" onSubmit={()=>preventDefault()}>
                 <InputDiv>
                     <div><a>Produto</a>
-                        <InputSelect name="prod" id="prod">{typeof prod !== "undefined" && prod.map((value) => { return <>
-                                <option value={value.id}>{value.nome}</option>
-                            </> })}</InputSelect>
+                        <InputSelect name="prod" id="prod" onChange={ChangeLength}>{typeof prod !== "undefined" && prod.map((value) => {
+                            if(value.qtd>0){
+                                return <><option value={value.id}>{value.nome}</option></>
+                            }
+                        })}</InputSelect>
                     </div>
                     <div><a>Quantidade</a>
-                        <ShortInput id="qtd" type="number" name="qtd" min="1" max="10" />
+                        <ShortInput id="qtd" type="number" name="qtd" min="1" max={maxLength} />
                     </div>
                     <div><a onClick={onAddBtnClick}>Adicionar Produto</a></div>
                 </InputDiv>
