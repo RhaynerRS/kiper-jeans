@@ -34,8 +34,7 @@ app.post('/venda',(req, res) => {
     const {prods}=req.body;
     const {valorTotal}=req.body;
     const {data}=req.body;
-    const {doc}=req.body;
-    let sql="INSERT INTO vendas (produtos,valor,data,doc) VALUES (?,?,?,?)";
+    let sql="INSERT INTO vendas (produtos,valor,data) VALUES (?,?,?)";
 
     let prod=prods.split(",")
 
@@ -48,7 +47,7 @@ app.post('/venda',(req, res) => {
         })
     }
 
-    db.query(sql,[prods,valorTotal,data,doc],(err,result)=>{
+    db.query(sql,[prods,valorTotal,data],(err,result)=>{
         console.log(err);
     })
 

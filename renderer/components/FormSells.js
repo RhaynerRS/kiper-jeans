@@ -14,6 +14,9 @@ const Content = styled.div`
     border-radius:4px;
     padding-inline:3vw;
     padding-bottom:1vw;
+    ::-webkit-scrollbar {
+        width: 1px;
+    }
 `
 const Header = styled.div`
     width:100%;
@@ -58,99 +61,109 @@ const ButtonDiv = styled.div`
         &:active{background-color:white;}
     }
 `
+const Card =styled.div`
+padding-inline:1.5vw;
+    border-bottom:1px solid black;
+    width:100%;
+    min-height:4vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    a{
+        text-align:center;
+        width:10vw;
+    }
+`
+const DivProducts=styled.div`
+    overflow-y: auto;
+    max-height:18vh;
+    min-height:18vh;
+    minWidth:100%
+    
+`
+var arrayProducts = []
+var valorTotalProdutos = 0;
+var maxLength =10;
 
 export function FormSells() {
-    const d = new Date();
+    
     const [prod, setProd] = useState()
     useEffect(() => {
         Axios.get("http://localhost:3001/getProducts").then((response) => { setProd(response.data) });
 
     })
-    const [values, setValue] = useState();
-    const handleChangeValues = (value) => {
-        setValue(prevValue => ({
-            ...prevValue,
-            [value.target.name]: value.target.value,
-        }));
-        console.log(values)
-    }
-
-    const handleProducts = () => {
-        const tags = document.getElementsByName("prod")
-        const qtd = document.getElementsByName("qtd")
-        let arrayProducts = []
-        for (let i = 0; i < tags.length; i++) {
-            arrayProducts.push(tags[i].value + '/' + qtd[i].value)
-        }
-        console.log(arrayProducts.toString())
-        setValue(prevValue => ({
-            ...prevValue,
-            "produtos": arrayProducts,
-        }));
-    }
-
-    let valorTotalProdutos = 0;
 
     const handleClickButton = () => {
-
+        const prods=arrayProducts.toString()
+        const valor=valorTotalProdutos
+        const date = new Date();
         Axios.post("http://localhost:3001/venda", {
-            prods: values.produtos.toString(),
-            data: values.data,
-            doc: values.doc,
-            valorTotal: valorTotalProdutos
+            prods: prods,
+            data: date,
+            valorTotal: valor
         }).then((response) => { console.log(response) })
+        valorTotalProdutos=0;
+        arrayProducts=[];
     }
-
-
-    const GetPreco = (n) => {
-        if (document.getElementById(n) !== null && prod!==undefined) {
-            let IdProd = document.getElementById(n).value
-            let SelectProd = prod.find(function (post, index) { if (post.id == IdProd) { return post } })
-            if (SelectProd !== undefined) {
-                let valor = "R$ " + (SelectProd.preco * document.getElementById("qtd" + n).value).toFixed(2)
-                valorTotalProdutos = (SelectProd.preco * document.getElementById("qtd" + n).value).toFixed(2)
-                return valor
+    
+    const [ProductList, SetProducList] = useState([])
+    
+    const onAddBtnClick = () => {
+            if (prod!==undefined){
+            let prodAdc=document.getElementById("prod")
+            let qtd=document.getElementById("qtd").value;
+            let SelectProd = prod.find(element => {if (element.id==prodAdc.value){return element.preco}})
+            valorTotalProdutos+=(SelectProd.preco*qtd)
+            arrayProducts.push(prodAdc.value + '/' + qtd)
+            SetProducList(ProductList.concat(
+                <Card key={ prod.value } >
+                    <a>{prodAdc.innerText}</a>
+                    <a>{qtd}</a>
+                    <a key={prod.value}>${SelectProd.preco*qtd}</a>
+                </Card>));
             }
+
+    };
+    function CloseModal() {
+        if (typeof document !== "undefined") {
+        document.getElementById("modal").style.display = "none";
+        document.getElementById("form").reset();
+        SetProducList([])
+        valorTotalProdutos=0;
+        arrayProducts=[];
         }
     }
-
-    const [ProductList, SetProducList] = useState([])
-
-    const onAddBtnClick = () => {
-        SetProducList(ProductList.concat(
-            <InputDiv>
-                <div><a>Produto</a><InputSelect onChange={handleProducts} name="prod" id="1">{typeof prod !== "undefined" && prod.map((value) => { return <><option value={value.id}>{value.nome}</option></> })}</InputSelect></div>
-                <div><a>Quantidade</a><ShortInput id="qtd1" type="number" name="qtd" min="1" max="10" onChange={handleProducts} /></div>
-                <div><a>{GetPreco("1")}</a></div>
-            </InputDiv>));
-    };
-
+    function ChangeLength(){
+        let selectProd=document.getElementById("prod")
+        typeof prod !== "undefined" && prod.map((value) => {if(value.id==selectProd.value){
+            value.qtd>10?maxLength=10:maxLength=value.qtd
+        }})
+    }
     return (
         <Content>
-            
             <Header><a>Cadastrar Venda</a><a onClick={CloseModal} style={{ cursor: 'pointer', fontSize: '18px' }}>X</a></Header>
-
             <form style={{ width: '100%' }} id="form" onSubmit={()=>preventDefault()}>
                 <InputDiv>
-                    <div><a for="doc">CPF Cliente </a><ShortInput type="text" name="doc" onChange={handleChangeValues} /></div>
-                    <div><a for="nome">Nome </a><LargeInput type="text" name="nome" onChange={handleChangeValues} /></div>
-                    <div><a for="data">Data </a><ShortInput type="date" name="data" onChange={handleChangeValues} /></div>
+                    <div><a>Produto</a>
+                        <InputSelect name="prod" id="prod" onChange={ChangeLength}>{typeof prod !== "undefined" && prod.map((value) => {
+                            if(value.qtd>0){
+                                return <><option value={value.id}>{value.nome}</option></>
+                            }
+                        })}</InputSelect>
+                    </div>
+                    <div><a>Quantidade</a>
+                        <ShortInput id="qtd" type="number" name="qtd" min="1" max={maxLength} />
+                    </div>
+                    <div><a onClick={onAddBtnClick}>Adicionar Produto</a></div>
                 </InputDiv>
-                
-                
             </form>
-            <button onClick={onAddBtnClick}>AAAAAAA</button>
-            <form>
-                <div style={{overflowY: 'auto', maxHeight:'25vh'}}>{ProductList}</div>
+            <form style={{ width: '100%' }} id="form" onSubmit={()=>preventDefault()}>
+                <DivProducts>{ProductList}</DivProducts>
             </form>
             <ButtonDiv>
-                <button onClick={() => handleClickButton()}><a style={{ fontSize: '16px', color: 'black   ', textAlign: 'center' }}>Salvar Produto</a></button>
+                <button onClick={()=> handleClickButton()}><a style={{ fontSize: '16px', color: 'black   ', textAlign: 'center' }}>Salvar Produto</a></button>
                 <a style={{ marginInline: '15px' }}> ou </a><a onClick={CloseModal} style={{ fontSize: '16px', color: 'black', textAlign: 'center', cursor: 'pointer' }}>Cancelar</a>
             </ButtonDiv>
         </Content>
     )
-}
-
-function CloseModal() {
-    document.getElementById("modal").style.display = "none";
 }
