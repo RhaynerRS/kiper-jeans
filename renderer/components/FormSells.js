@@ -102,7 +102,6 @@ export function FormSells() {
             data: date,
             valorTotal: valor
         }).then((response) => { console.log(response) })
-
         valorTotalProdutos=0;
         arrayProducts=[];
     }
@@ -130,6 +129,8 @@ export function FormSells() {
         document.getElementById("modal").style.display = "none";
         document.getElementById("form").reset();
         SetProducList([])
+        valorTotalProdutos=0;
+        arrayProducts=[];
         }
     }
     function ChangeLength(){
