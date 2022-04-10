@@ -94,10 +94,13 @@ export function FormProducts(){
             </InputDiv>
             <InputDiv>
             <div><a for="category">Categoria </a><InputSelect type="text" name="category" onChange={handleChangeValues} >
+                <option>Acessório</option> 
                 <option>Bermuda</option>
+                <option>Bolsa</option>
                 <option>Blusa</option>
                 <option>Camiseta</option>
                 <option>Calça</option>
+                <option>Moda praia</option>
                 <option>Vestido</option>
                 </InputSelect></div>
             <div><a for="preco">Preço </a><ShortInput type="text" name="preco" onChange={handleChangeValues} /></div>
@@ -114,4 +117,5 @@ export function FormProducts(){
 
 function CloseModal(){
     document.getElementById("modal").style.display = "none";
+    document.getElementById("form").reset();
 }
