@@ -12,10 +12,13 @@ const BarraLateral =styled.div`
     margin:0;
 `
 const Text=styled.a`
-    font-size:20px;
+    font-size:1.25rem;
     color:black;
     font-weight:light;
     margin-inline-start:20px;
+    @media screen and (max-width:1360){
+        font-size:1rem;
+    }
 `
 
 const ListItem=styled.li`
