@@ -12,10 +12,13 @@ const BarraLateral =styled.div`
     margin:0;
 `
 const Text=styled.a`
-    font-size:20px;
+    font-size:1.25rem;
     color:black;
     font-weight:light;
     margin-inline-start:20px;
+    @media screen and (max-width:1360){
+        font-size:1rem;
+    }
 `
 
 const ListItem=styled.li`
@@ -61,7 +64,7 @@ export function SideBar(){
             <ul style={{padding:0,margin:0}}>
                 <Link href="/home"><ListItem id="home"><FontAwesomeIcon icon={faBoxesStacked}  color="black" size="lg" /><Text>Produtos</Text></ListItem></Link>
                 <Link href="/vendas"><ListItem id="vendas"><FontAwesomeIcon icon={faSquarePollVertical}  color="black" size="lg"/><Text>Vendas</Text></ListItem></Link>
-                <Link href="/home"><ListItem ><FontAwesomeIcon icon={faWallet}  color="black" size="lg"/><Text>Financeiro</Text></ListItem></Link>
+                <Link href="/financeiro"><ListItem ><FontAwesomeIcon icon={faWallet}  color="black" size="lg"/><Text>Financeiro</Text></ListItem></Link>
                 <Link href="/home"><ListItem><FontAwesomeIcon icon={faGear}  color="black" size="lg"/><Text>Configurações</Text></ListItem></Link>
             </ul>
             

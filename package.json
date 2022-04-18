@@ -18,14 +18,17 @@
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
     "@fortawesome/react-fontawesome": "^0.1.17",
     "axios": "^0.26.1",
+    "chart.js": "^3.7.1",
     "concurrently": "^7.1.0",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.1",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.0.1",
     "express": "^4.17.3",
-    "moment": "^2.29.1",
+    "faker": "^6.6.6",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.15",
+    "react-chartjs-2": "^4.1.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
