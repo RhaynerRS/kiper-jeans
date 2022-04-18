@@ -41,14 +41,19 @@ type Props={
 }
 
 export function TitleBar({Title}:Props){
+    let page;
+    if (typeof document !== 'undefined'){
+    let link=window.location.href.split('/')[3]
+        link != 'financeiro'?page=(<Button onClick={OpenModal} name="newItem">
+        <FontAwesomeIcon icon={faPlus} color='black' size="lg"/>
+    </Button>):""
+    }
     return(
         <Titulo>
             <TituloText>
                 {Title}
             </TituloText>
-            <Button onClick={OpenModal} name="newItem">
-                <FontAwesomeIcon icon={faPlus} color='black' size="lg"/>
-            </Button>
+            {page}
         </Titulo>
     )
 }

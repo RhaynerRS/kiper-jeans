@@ -25,9 +25,11 @@ export function Modal(){
     let link=window.location.href.split('/')[3]
     if (link=='home'){
         form=<FormProducts />
-    }else{
+    }else if(link=='vendas'){
         form=<FormSells />
-    }}
+    }}else{
+        form=<></>
+    }
     return(
         <ModalDiv id="modal">
             {form}
