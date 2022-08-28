@@ -13,8 +13,8 @@ function createWindow() {
     },
     autoHideMenuBar: true,
   });
-  win.loadURL("http://localhost:3000");
-  win.setMenu(null);
+  win.loadURL("https://localhost:3000");
+  //win.setMenu(null);
 }
 
 app.on("ready", createWindow);
