@@ -15,18 +15,25 @@ import dayjs from "dayjs";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
-  const [items, setItems] = useState({ produtos: [], clientes: [] });
+  const [clientes, setClientes] = useState([]);
+  const [produtos, setProdutos] = useState([]);
+  const [vendas, setVendas] = useState([]);
 
-  useEffect(async () => {
-    await Axios.get("http://localhost:3002/getAll").then((response) => {
-      setItems(response.data);
+  function getData() {
+    setClientes(JSON.parse(sessionStorage.getItem("clientes")) || []);
+    setProdutos(JSON.parse(sessionStorage.getItem("produtos")) || []);
+    setVendas(JSON.parse(sessionStorage.getItem("vendas")) || []);
+  }
+
+  useEffect(() => {
+    getData();
+    window.addEventListener("storage", () => {
+      getData();
     });
   }, []);
 
-  const vendas = require("../vendas/data/dados.json");
-  
   let receita = 0;
-  vendas.content.transactions.forEach((item) => {
+  vendas.forEach((item) => {
     receita += item.amount;
   });
 
@@ -54,7 +61,7 @@ function Dashboard() {
                 color="dark"
                 icon="leaderboard"
                 title="Vendas Realizadas"
-                count={vendas.content.transactions.length}
+                count={vendas.length || 0}
               />
             </MDBox>
           </Grid>
@@ -64,7 +71,7 @@ function Dashboard() {
                 color="dark"
                 icon="store"
                 title="Produtos"
-                count={items.produtos.length || 0}
+                count={produtos.length || 0}
               />
             </MDBox>
           </Grid>
@@ -74,7 +81,7 @@ function Dashboard() {
                 color="dark"
                 icon="person_add"
                 title="Clientes"
-                count={items.clientes.length || 0}
+                count={clientes.length || 0}
               />
             </MDBox>
           </Grid>

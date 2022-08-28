@@ -1,33 +1,27 @@
 import MDTypography from "components/MDTypography";
 import { useEffect, useState } from "react";
-
-//imports
 import dayjs from "dayjs";
 
-export default function data() {
+export default function Data() {
   const rowsItem = [];
-  const [items, setItems] = useState([]);
+  const [Items, SetItems] = useState([]);
 
   function getData() {
-    const vendas = require('./dados.json')
-    setItems(vendas.content.transactions);
+    SetItems(JSON.parse(sessionStorage.getItem("vendas")) || []);
   }
 
   useEffect(() => {
     getData();
+    window.addEventListener("storage",()=>{
+      getData();
+    })
   }, []);
 
-  items.forEach((item) => {
-    const pagamento =
-      item.amountCredit > 0 && item.amountDebit > 0
-        ? "Credito/Débito"
-        : item.amountCredit > 0
-        ? "Crédito"
-        : "Débito";
+  Items.forEach((item) => {
     rowsItem.push({
       cod: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {item.ard||item.tid}
+          {item.ard || item.tid}
         </MDTypography>
       ),
       data: (
@@ -58,7 +52,7 @@ export default function data() {
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
           {item.status || "PENDDING"}
         </MDTypography>
-      )
+      ),
     });
   });
   return {

@@ -7,18 +7,19 @@ import Dropdown from "components/Dropdown";
 //imports
 import dayjs from "dayjs";
 
-export default function data() {
+export default function Data() {
   const rowsItem = [];
-  const [items, setItems] = useState([]);
+  const [Items, SetItems] = useState([]);
 
-  const getData = async () => {
-    await Axios.get("http://localhost:3002/getCliente").then((response) => {
-      setItems(response.data);
-    });
-  };
+  function getData() {
+    SetItems(JSON.parse(sessionStorage.getItem("clientes")) || []);
+  }
 
   useEffect(() => {
     getData();
+    window.addEventListener("storage",()=>{
+      getData();
+    })
   }, []);
 
   const Produto = ({ name }) => (
@@ -26,7 +27,7 @@ export default function data() {
       {name}
     </MDTypography>
   );
-  items.forEach((item) => {
+  Items.forEach((item) => {
     rowsItem.push({
       cod: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">

@@ -17,6 +17,7 @@ import { useMaterialUIController, setMiniSidenav } from "context";
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+import Axios from "axios";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -70,6 +71,40 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
+  const getData = async () => {
+    await Axios.get("http://localhost:3002/getVenda")
+      .then(function (response) {
+        sessionStorage.setItem("vendas", JSON.stringify(response.data.content.transactions));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    await Axios.get("http://localhost:3002/getProduto")
+      .then((response) => {
+        sessionStorage.setItem("produtos", JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    await Axios.get("http://localhost:3002/getCliente")
+      .then((response) => {
+        sessionStorage.setItem("clientes", JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+    const interval = setInterval(() => {
+      getData();
+      console.log("refresh");
+    }, 300000);
+    return () => clearInterval(interval);
+  }, []);
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
       if (route.collapse) {

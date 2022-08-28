@@ -15,7 +15,7 @@ export default function Modal(props) {
     const arrayCampos = [];
     const tamanhosDisponiveis = [];
     array.map((item) => {
-      item.type !== "checkbox" && item.value !== ""
+      return item.type !== "checkbox" && item.value !== ""
         ? arrayCampos.push(item.value)
         : item.checked == true
         ? tamanhosDisponiveis.push(item.value)

@@ -13,13 +13,8 @@ export default function ModalCliente(props) {
     event.preventDefault();
     const array = [...document.getElementsByTagName("input")];
     const arrayCampos = [];
-    const tamanhosDisponiveis = [];
     array.map((item) => {
-      item.type !== "checkbox" && item.value !== ""
-        ? arrayCampos.push(item.value)
-        : item.checked === true
-        ? tamanhosDisponiveis.push(item.value)
-        : null;
+      return arrayCampos.push(item.value)
     });
 
     Axios.post("http://localhost:3002/insertCliente", {
