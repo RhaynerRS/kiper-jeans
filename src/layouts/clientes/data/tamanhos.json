@@ -1,0 +1,22 @@
+{
+    "camisetas":[
+        {"tamanho":"PP"},
+        {"tamanho":"P"},
+        {"tamanho":"M"},
+        {"tamanho":"G"},
+        {"tamanho":"GG"}
+    ],
+    "calcas":[
+        {"tamanho":"36"},
+        {"tamanho":"38"},
+        {"tamanho":"40"},
+        {"tamanho":"42"},
+        {"tamanho":"44"},
+        {"tamanho":"46"},
+        {"tamanho":"50"},
+        {"tamanho":"52"},
+        {"tamanho":"54"},
+        {"tamanho":"56"}
+    ]
+
+}

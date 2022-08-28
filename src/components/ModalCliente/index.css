@@ -1,0 +1,50 @@
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1300;
+}
+.modalContainer{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 390px;
+  height: auto;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
+
+.modalHeader {
+  margin-bottom: 16px !important;
+  width: 100%;
+  display:flex;
+}
+.close{
+    margin-left:192px;
+    cursor:pointer;
+    color: #7b809a;
+}
+
+.checkBoxes{
+  margin-top: 12px;;
+  display: grid; 
+  grid-template-columns: repeat(5, 33px); 
+  grid-template-rows: repeat(auto-fill, 23px); 
+  padding-inline: calc((100% - 265px)/2);
+  gap: 15px 25px; 
+  grid-template-areas: ". . . . ."; 
+  font-size: 14px;
+  font-weight: 700;
+  color: #7b809a;
+}
+.checkBoxes div{
+  display: flex;
+  align-items: center;
+}
+.checkBoxes label{
+  margin-left: 3px;
+}
