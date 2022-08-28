@@ -10,11 +10,12 @@ export default function Data() {
     SetItems(JSON.parse(sessionStorage.getItem("vendas")) || []);
   }
 
+  //atualiza os items toda vez q o sessionStorage for alterado
   useEffect(() => {
     getData();
-    window.addEventListener("storage",()=>{
+    window.addEventListener("storage", () => {
       getData();
-    })
+    });
   }, []);
 
   Items.forEach((item) => {

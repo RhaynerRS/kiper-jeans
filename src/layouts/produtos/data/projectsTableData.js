@@ -11,11 +11,12 @@ export default function Data() {
     SetItems(JSON.parse(sessionStorage.getItem("produtos")) || []);
   }
 
+  //atualiza os items toda vez q o sessionStorage for alterado
   useEffect(() => {
     getData();
-    window.addEventListener("storage",()=>{
+    window.addEventListener("storage", () => {
       getData();
-    })
+    });
   }, []);
 
   const Produto = ({ name }) => (

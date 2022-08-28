@@ -71,6 +71,7 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
+  //requisiçoes de todas as API's
   const getData = async () => {
     await Axios.get("http://localhost:3002/getVenda")
       .then(function (response) {
@@ -97,6 +98,7 @@ export default function App() {
       });
   };
 
+  //faz as requisiçoes a cada 5 minutos
   useEffect(() => {
     getData();
     const interval = setInterval(() => {
@@ -105,6 +107,7 @@ export default function App() {
     }, 300000);
     return () => clearInterval(interval);
   }, []);
+
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
       if (route.collapse) {

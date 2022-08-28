@@ -5,14 +5,18 @@ import { useState } from "react";
 import "./index.css";
 
 export default function Dropdown(props) {
+
   const [openMenu, setOpenMenu] = useState(false);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
+
+  //delete o item e da refresh no componente
   const deleteItem = (id) => {
     Axios.post("http://localhost:3002/deleteProduto", {
       id: id,
     }).then(async () => (await props.refresh(), setOpenMenu(false)));
   };
+
   return (
     <div className="dropdown">
       <Icon onClick={handleOpenMenu}>more_vert</Icon>

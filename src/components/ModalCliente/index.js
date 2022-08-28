@@ -9,6 +9,7 @@ import "./index.css";
 export default function ModalCliente(props) {
   const campos = props.campos;
 
+  //insere produtos
   const handleSubmit = (event) => {
     event.preventDefault();
     const array = [...document.getElementsByTagName("input")];
