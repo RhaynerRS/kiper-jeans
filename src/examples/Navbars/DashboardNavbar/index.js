@@ -137,7 +137,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
         </MDBox>
           <MDBox>
             <MDTypography component="a" href="#" variant="body2" color="text" fontWeight="medium">
-            {dayjs().format("DD MMMM YYYY")}<Icon style={{marginLeft:"5px"}}>calendar_today</Icon>
+            {dayjs().format("DD [de] MMMM YYYY")}<Icon style={{marginLeft:"5px"}}>calendar_today</Icon>
             </MDTypography>
           </MDBox>
       </Toolbar>

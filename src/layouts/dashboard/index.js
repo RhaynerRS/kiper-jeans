@@ -87,7 +87,7 @@ function Dashboard() {
                   color="dark"
                   title="Vendas Semanais"
                   description="Veja a quantidade de vendas dos ultimos 7 dias"
-                  date={dayjs().format("DD MMMM YYYY")}
+                  date={dayjs().format("DD [de] MMMM")}
                   chart={reportsBarChartData}
                 />
               </MDBox>
