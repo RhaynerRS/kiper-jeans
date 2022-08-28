@@ -26,8 +26,8 @@ function Dashboard() {
   const vendas = require("../vendas/data/dados.json");
   
   let receita = 0;
-  vendas.content.sales.forEach((item) => {
-    receita += item.netAmount;
+  vendas.content.transactions.forEach((item) => {
+    receita += item.amount;
   });
 
   return (
@@ -54,7 +54,7 @@ function Dashboard() {
                 color="dark"
                 icon="leaderboard"
                 title="Vendas Realizadas"
-                count={vendas.content.sales.length}
+                count={vendas.content.transactions.length}
               />
             </MDBox>
           </Grid>

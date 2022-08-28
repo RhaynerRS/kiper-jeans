@@ -1,47 +1,1426 @@
 {
+  "cursor": {
+      "hasNextKey": false
+  },
   "content": {
-    "sales": [
-      {
-        "startDate": "2019-10-01",
-        "endDate": "2019-10-01",
-        "amount": 200,
-        "amountCredit": 30060.08,
-        "amountDebit": 20500,
-        "netAmount": 50560.08,
-        "quantity": 230,
-        "discountAmount": 21268
-      },
-      {
-        "startDate": "2022-08-21",
-        "endDate": "2019-10-01",
-        "amount": 200,
-        "amountCredit": null,
-        "amountDebit": 100,
-        "netAmount": 100,
-        "quantity": 1,
-        "discountAmount": 0
-      },
-      {
-        "startDate": "2022-08-22",
-        "endDate": "2019-10-01",
-        "amount": 200,
-        "amountCredit": 300.08,
-        "amountDebit": 600,
-        "netAmount": 900.08,
-        "quantity": 20,
-        "discountAmount": 120
-      },
-      {
-        "startDate": "2022-08-27",
-        "endDate": "2019-10-01",
-        "amount": 200,
-        "amountCredit": 20000.08,
-        "amountDebit": 0,
-        "netAmount": 20000.08,
-        "quantity": 150,
-        "parcerla": 4,
-        "discountAmount": 30.6
-      }
-    ]
+      "transactions": [
+          {
+              "ard": "05480871287658490540011",
+              "captureTypeCode": 2,
+              "cardNumber": "230744******1322",
+              "installmentQuantity": 2,
+              "status": "APPROVED",
+              "discountAmount": 2.17,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "orderNumber": "76216826",
+              "netAmount": 115.95,
+              "mdrAmount": 2.17,
+              "mdrFee": 1.84,
+              "deviceType": "ECO",
+              "nsu": 879555119,
+              "amount": 118.12,
+              "tid": "10012110131254465388",
+              "saleSummaryNumber": 65849054,
+              "brandCode": 1,
+              "captureType": "ECOMMERCE",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 1.84,
+              "device": "RO927776",
+              "saleDate": "2022-08-22",
+              "saleHour": "12:59:22",
+              "authorizationCode": 441488,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2021-10-13",
+                      "amount": 118.12
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "captureTypeCode": 2,
+              "cardNumber": "549167******0973",
+              "installmentQuantity": 3,
+              "status": "APPROVED",
+              "discountAmount": 14.59,
+              "strAuthorizationCode": "D268971",
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "orderNumber": "377283692",
+              "netAmount": 715.11,
+              "mdrAmount": 14.59,
+              "mdrFee": 2,
+              "deviceType": "ECO",
+              "nsu": 377073583,
+              "amount": 729.7,
+              "tid": "10022012071342000002",
+              "saleSummaryNumber": 96849774,
+              "brandCode": 1,
+              "captureType": "ECOMMERCE",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2,
+              "device": "RO203197",
+              "saleDate": "2022-08-22",
+              "saleHour": "13:42:00",
+              "authorizationCode": 0,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2020-12-07",
+                      "amount": 729.7
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "24894091051001220101883",
+              "captureTypeCode": 4,
+              "cardNumber": "530034******9298",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 14.92,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 584.08,
+              "mdrAmount": 14.92,
+              "mdrFee": 2.49,
+              "deviceType": "POO",
+              "nsu": 247435598,
+              "amount": 599,
+              "saleSummaryNumber": 82029750,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.49,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "20:04:59",
+              "authorizationCode": 4475,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 599
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051013020101883",
+              "captureTypeCode": 4,
+              "cardNumber": "520977******2740",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 2.35,
+              "strAuthorizationCode": "D118617",
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 145.65,
+              "mdrAmount": 2.35,
+              "mdrFee": 1.59,
+              "deviceType": "POO",
+              "nsu": 4732688,
+              "amount": 148,
+              "saleSummaryNumber": 259185290,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 1.59,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "19:57:53",
+              "authorizationCode": 0,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 148
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "DEBIT",
+                  "code": 2,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "248940910510001420101883",
+              "captureTypeCode": 4,
+              "cardNumber": "514087******6057",
+              "installmentQuantity": 3,
+              "status": "APPROVED",
+              "discountAmount": 1.5,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 58.5,
+              "mdrAmount": 1.5,
+              "mdrFee": 2.5,
+              "deviceType": "POO",
+              "nsu": 247487184,
+              "amount": 60,
+              "saleSummaryNumber": 40649695,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.5,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "19:46:04",
+              "authorizationCode": 28710,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 60
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "24894091051001520101883",
+              "captureTypeCode": 4,
+              "cardNumber": "459080******7708",
+              "installmentQuantity": 8,
+              "status": "APPROVED",
+              "discountAmount": 53.04,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 1714.96,
+              "mdrAmount": 53.04,
+              "mdrFee": 3,
+              "deviceType": "POO",
+              "nsu": 247506094,
+              "amount": 1768,
+              "saleSummaryNumber": 96349932,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 3,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "19:38:39",
+              "authorizationCode": 1170,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 1768
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "24894091051001820101883",
+              "captureTypeCode": 4,
+              "cardNumber": "625094******0005",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 6.24,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 233.76,
+              "mdrAmount": 6.24,
+              "mdrFee": 2.6,
+              "deviceType": "POO",
+              "nsu": 4570994,
+              "amount": 240,
+              "saleSummaryNumber": 55229217,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.6,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:59:07",
+              "authorizationCode": 677556,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 154.8
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051001620101883",
+              "captureTypeCode": 4,
+              "cardNumber": "439388******0443",
+              "installmentQuantity": 6,
+              "status": "APPROVED",
+              "discountAmount": 22.33,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 747.57,
+              "mdrAmount": 22.33,
+              "mdrFee": 2.9,
+              "deviceType": "POO",
+              "nsu": 247553376,
+              "amount": 769.9,
+              "saleSummaryNumber": 96349931,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.9,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "19:20:03",
+              "authorizationCode": 4623,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 769.9
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "24894091051001720101883",
+              "captureTypeCode": 4,
+              "cardNumber": "530034******6477",
+              "installmentQuantity": 6,
+              "status": "APPROVED",
+              "discountAmount": 24.71,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 827.29,
+              "mdrAmount": 24.71,
+              "mdrFee": 2.9,
+              "deviceType": "POO",
+              "nsu": 4620208,
+              "amount": 852,
+              "saleSummaryNumber": 1749152,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.9,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "19:16:03",
+              "authorizationCode": 8459,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 852
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "24894091051001820101883",
+              "captureTypeCode": 4,
+              "cardNumber": "516292******4480",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 3.85,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 150.95,
+              "mdrAmount": 3.85,
+              "mdrFee": 2.49,
+              "deviceType": "POO",
+              "nsu": 4570994,
+              "amount": 154.8,
+              "saleSummaryNumber": 82029750,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.49,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:59:07",
+              "authorizationCode": 67214,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 154.8
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051001920101883",
+              "captureTypeCode": 4,
+              "cardNumber": "544731******6214",
+              "installmentQuantity": 6,
+              "status": "APPROVED",
+              "discountAmount": 22.33,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 747.57,
+              "mdrAmount": 22.33,
+              "mdrFee": 2.9,
+              "deviceType": "POO",
+              "nsu": 4556272,
+              "amount": 769.9,
+              "saleSummaryNumber": 1749152,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.9,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:54:20",
+              "authorizationCode": 54206,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 769.9
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "24894091051002020101883",
+              "captureTypeCode": 4,
+              "cardNumber": "603689******0006464",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 2.86,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 177.04,
+              "mdrAmount": 2.86,
+              "mdrFee": 1.59,
+              "deviceType": "POO",
+              "nsu": 4551508,
+              "amount": 179.9,
+              "saleSummaryNumber": 259185290,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 1.59,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:52:34",
+              "authorizationCode": 77161,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 179.9
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "DEBIT",
+                  "code": 2,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051002120101883",
+              "captureTypeCode": 4,
+              "cardNumber": "439267******2854",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 2.86,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 177.04,
+              "mdrAmount": 2.86,
+              "mdrFee": 1.59,
+              "deviceType": "POO",
+              "nsu": 4541192,
+              "amount": 179.9,
+              "saleSummaryNumber": 259343520,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 1.59,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:48:55",
+              "authorizationCode": 4541192,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 179.9
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "DEBIT",
+                  "code": 2,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051002220101883",
+              "captureTypeCode": 4,
+              "cardNumber": "534593******2449",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 1.24,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 48.56,
+              "mdrAmount": 1.24,
+              "mdrFee": 2.49,
+              "deviceType": "POO",
+              "nsu": 247641604,
+              "amount": 49.8,
+              "saleSummaryNumber": 82029750,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.49,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:47:30",
+              "authorizationCode": 67307,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 49.8
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051002420101883",
+              "captureTypeCode": 4,
+              "cardNumber": "482478******3530",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 2.8,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 53.2,
+              "mdrAmount": 2.8,
+              "mdrFee": 5,
+              "deviceType": "POO",
+              "nsu": 247691392,
+              "amount": 56,
+              "saleSummaryNumber": 54010400,
+              "brandCode": 2,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 5,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "23:34:23",
+              "authorizationCode": 245943,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 56
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "DEBIT",
+                  "code": 2,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051002320101883",
+              "captureTypeCode": 4,
+              "cardNumber": "514945******4982",
+              "installmentQuantity": 6,
+              "status": "APPROVED",
+              "discountAmount": 22.3,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 746.7,
+              "mdrAmount": 22.3,
+              "mdrFee": 2.9,
+              "deviceType": "POO",
+              "nsu": 247673740,
+              "amount": 769,
+              "saleSummaryNumber": 1749152,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.9,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:35:13",
+              "authorizationCode": 4330,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 769
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "24894091051002420101883",
+              "captureTypeCode": 4,
+              "cardNumber": "523284******2621",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 0.3,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 18.7,
+              "mdrAmount": 0.3,
+              "mdrFee": 1.59,
+              "deviceType": "POO",
+              "nsu": 247691392,
+              "amount": 19,
+              "saleSummaryNumber": 259185290,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 1.59,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:28:25",
+              "authorizationCode": 245834,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 19
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "DEBIT",
+                  "code": 2,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051002520101883",
+              "captureTypeCode": 4,
+              "cardNumber": "589916******8983",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 3.96,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 245.04,
+              "mdrAmount": 3.96,
+              "mdrFee": 1.59,
+              "deviceType": "POO",
+              "nsu": 4477956,
+              "amount": 249,
+              "saleSummaryNumber": 259185290,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 1.59,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:27:21",
+              "authorizationCode": 59179,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 249
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "DEBIT",
+                  "code": 2,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051002620101883",
+              "captureTypeCode": 4,
+              "cardNumber": "439267******7688",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 3.96,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 245.04,
+              "mdrAmount": 3.96,
+              "mdrFee": 1.59,
+              "deviceType": "POO",
+              "nsu": 247702680,
+              "amount": 249,
+              "saleSummaryNumber": 259343520,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 1.59,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:24:18",
+              "authorizationCode": 7702680,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 249
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "DEBIT",
+                  "code": 2,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051002720101883",
+              "captureTypeCode": 4,
+              "cardNumber": "410863******8083",
+              "installmentQuantity": 6,
+              "status": "APPROVED",
+              "discountAmount": 22.3,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 746.7,
+              "mdrAmount": 22.3,
+              "mdrFee": 2.9,
+              "deviceType": "POO",
+              "nsu": 247722990,
+              "amount": 769,
+              "saleSummaryNumber": 96349931,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.9,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:16:55",
+              "authorizationCode": 16567,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 769
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "24894091051002820101883",
+              "captureTypeCode": 4,
+              "cardNumber": "523284******4065",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 3.96,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 245.04,
+              "mdrAmount": 3.96,
+              "mdrFee": 1.59,
+              "deviceType": "POO",
+              "nsu": 247753554,
+              "amount": 249,
+              "saleSummaryNumber": 259185290,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 1.59,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:06:05",
+              "authorizationCode": 12978,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 249
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "DEBIT",
+                  "code": 2,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051002920101883",
+              "captureTypeCode": 4,
+              "cardNumber": "415275******2127",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 1.27,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 49.63,
+              "mdrAmount": 1.27,
+              "mdrFee": 2.49,
+              "deviceType": "POO",
+              "nsu": 247765400,
+              "amount": 50.9,
+              "saleSummaryNumber": 76531634,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.49,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "18:01:35",
+              "authorizationCode": 3262,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 50.9
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24894091051003020101883",
+              "captureTypeCode": 4,
+              "cardNumber": "525320******4144",
+              "installmentQuantity": 6,
+              "status": "APPROVED",
+              "discountAmount": 20.27,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 678.73,
+              "mdrAmount": 20.27,
+              "mdrFee": 2.9,
+              "deviceType": "POO",
+              "nsu": 247770448,
+              "amount": 699,
+              "saleSummaryNumber": 1749152,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.9,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "17:59:41",
+              "authorizationCode": 5210,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 699
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "24894091051003120101883",
+              "captureTypeCode": 4,
+              "cardNumber": "421847******5242",
+              "installmentQuantity": 1,
+              "status": "APPROVED",
+              "discountAmount": 6.2,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 242.8,
+              "mdrAmount": 6.2,
+              "mdrFee": 2.49,
+              "deviceType": "POO",
+              "nsu": 4392272,
+              "amount": 249,
+              "saleSummaryNumber": 76531634,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.49,
+              "device": "FC012150",
+              "saleDate": "2022-08-22",
+              "saleHour": "17:57:46",
+              "authorizationCode": 5857,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 249
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "NO_INSTALLMENTS",
+                  "productCode": 1
+              }
+          },
+          {
+              "ard": "24885241051001220101883",
+              "captureTypeCode": 4,
+              "cardNumber": "636368******7515",
+              "installmentQuantity": 3,
+              "status": "APPROVED",
+              "discountAmount": 4.63,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 154.37,
+              "mdrAmount": 4.63,
+              "mdrFee": 2.91,
+              "deviceType": "POO",
+              "nsu": 126221403,
+              "amount": 159,
+              "saleSummaryNumber": 36549895,
+              "brandCode": 14,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.91,
+              "device": "WQ623860",
+              "saleDate": "2022-08-22",
+              "saleHour": "10:09:29",
+              "authorizationCode": 693003,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 159
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "78893091051112320109432",
+              "captureTypeCode": 2,
+              "cardNumber": "550209******9666",
+              "installmentQuantity": 5,
+              "status": "CANCELLED",
+              "discountAmount": 3.48,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "orderNumber": "7765",
+              "netAmount": 184.85,
+              "mdrAmount": 3.48,
+              "mdrFee": 1.85,
+              "deviceType": "ECO",
+              "nsu": 13178011,
+              "amount": 188.33,
+              "tid": "10012106051303133378",
+              "saleSummaryNumber": 16149395,
+              "brandCode": 1,
+              "captureType": "ECOMMERCE",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 1.85,
+              "device": "RO929419",
+              "saleDate": "2022-08-22",
+              "saleHour": "13:16:58",
+              "authorizationCode": 144147,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2021-06-05",
+                      "amount": 188.33
+                  },
+                  {
+                      "status": "CANCELLED",
+                      "date": "2021-06-08",
+                      "amount": 188.33
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "78994092051112320109432",
+              "captureTypeCode": 4,
+              "cardNumber": "548045******3790",
+              "installmentQuantity": 3,
+              "status": "APPROVED",
+              "discountAmount": 407.01,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 9768.32,
+              "mdrAmount": 407.01,
+              "mdrFee": 4,
+              "nsu": 888533335045,
+              "amount": 10175.33,
+              "saleSummaryNumber": 33549620,
+              "brandCode": 1,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 4,
+              "device": "WQ155330",
+              "authorizationCode": 140700,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 10175.33
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "78893091051112320110433",
+              "captureTypeCode": 5,
+              "cardNumber": "526863******8947",
+              "installmentQuantity": 2,
+              "status": "APPROVED",
+              "discountAmount": 4.08,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 200.11,
+              "mdrAmount": 4.08,
+              "mdrFee": 2,
+              "nsu": 248300294,
+              "amount": 204.19,
+              "saleSummaryNumber": 43649862,
+              "brandCode": 1,
+              "captureType": "PDV",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2,
+              "device": "PV801305",
+              "authorizationCode": 18334,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 204.19
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "78894101151112320110544",
+              "captureTypeCode": 2,
+              "cardNumber": "539063******5234",
+              "installmentQuantity": 4,
+              "status": "APPROVED",
+              "discountAmount": 2.11,
+              "boardingFeeAmount": 30,
+              "movementDate": "2022-08-22",
+              "orderNumber": "2805202019381010",
+              "netAmount": 82.89,
+              "mdrAmount": 2.11,
+              "mdrFee": 2.5,
+              "nsu": 2190373,
+              "amount": 85,
+              "tid": "11002005271831414390",
+              "saleSummaryNumber": 98460778,
+              "brandCode": 1,
+              "captureType": "ECOMMERCE",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 2.5,
+              "device": "PV650319",
+              "authorizationCode": 122751,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 85
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          },
+          {
+              "ard": "78894101151112320110544",
+              "captureTypeCode": 4,
+              "cardNumber": "506723******4445",
+              "installmentQuantity": 5,
+              "status": "CANCELLED",
+              "discountAmount": 51.31,
+              "boardingFeeAmount": 0,
+              "movementDate": "2022-08-22",
+              "netAmount": 1419.03,
+              "mdrAmount": 51.31,
+              "mdrFee": 3.49,
+              "nsu": 333413330600,
+              "amount": 1470.34,
+              "saleSummaryNumber": 34049418,
+              "brandCode": 14,
+              "captureType": "POS",
+              "flexAmount": 0,
+              "flex": false,
+              "feeTotal": 3.49,
+              "device": "WH032025",
+              "authorizationCode": 117610,
+              "flexFee": 0,
+              "tokenized": false,
+              "tracking": [
+                  {
+                      "status": "APPROVED",
+                      "date": "2022-08-22",
+                      "amount": 1470.34
+                  },
+                  {
+                      "status": "CANCELLED",
+                      "date": "2022-08-22",
+                      "amount": 1470.34
+                  }
+              ],
+              "merchant": {
+                  "companyNumber": "13381369",
+                  "companyName": "IND C ESPUMAS C CUIABA LTDA",
+                  "documentNumber": "2292655000106",
+                  "tradeName": "IND C ESPUMAS C CUIABA LTDA"
+              },
+              "modality": {
+                  "type": "CREDIT",
+                  "code": 1,
+                  "product": "IN_INSTALLMENTS_NO_INTEREST",
+                  "productCode": 3
+              }
+          }
+      ]
   }
 }

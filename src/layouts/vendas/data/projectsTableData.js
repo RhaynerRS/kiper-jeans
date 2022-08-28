@@ -9,8 +9,8 @@ export default function data() {
   const [items, setItems] = useState([]);
 
   function getData() {
-    const data = require("./dados.json");
-    setItems(data.content.sales);
+    const vendas = require('./dados.json')
+    setItems(vendas.content.transactions);
   }
 
   useEffect(() => {
@@ -25,50 +25,50 @@ export default function data() {
         ? "Crédito"
         : "Débito";
     rowsItem.push({
-      data: (
+      cod: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {dayjs(item.startDate).format("DD/MM/YYYY")}
+          {item.ard||item.tid}
         </MDTypography>
       ),
-      produtos: (
+      data: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {item.quantity}
+          {dayjs(item.saleDate).format("DD/MM/YYYY")}
         </MDTypography>
       ),
       valor: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
           {new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
-            item.netAmount
+            item.amount
           )}
         </MDTypography>
       ),
-      desconto: (
+      taxa: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
           {new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
-            item.discountAmount
+            item.feeTotal
           )}
-        </MDTypography>
-      ),
-      parcelas: (
-        <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {item.parcerla || "Avista"}
         </MDTypography>
       ),
       pagamento: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {pagamento}
+          {item.modality.type}
         </MDTypography>
       ),
+      status: (
+        <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+          {item.status || "PENDDING"}
+        </MDTypography>
+      )
     });
   });
   return {
     columns: [
+      { Header: "cod", accessor: "cod", align: "left" },
       { Header: "data", accessor: "data", align: "left" },
-      { Header: "produtos", accessor: "produtos", align: "center" },
       { Header: "valor liquido", accessor: "valor", align: "center" },
-      { Header: "desconto", accessor: "desconto", align: "center" },
-      { Header: "parcelas", accessor: "parcelas", align: "center" },
+      { Header: "taxa", accessor: "taxa", align: "center" },
       { Header: "forma de pagamento", accessor: "pagamento", align: "left" },
+      { Header: "status", accessor: "status", align: "center" },
     ],
 
     rows: [...rowsItem],
