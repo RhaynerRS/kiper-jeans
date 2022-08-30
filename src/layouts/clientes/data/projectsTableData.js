@@ -48,7 +48,7 @@ export default function Data() {
       ),
       acoes: (
         <MDTypography component="a" href="#" color="text">
-          <Dropdown id={item._id} refresh={getData} />
+          <Dropdown id={item._id} refresh={getData} delete="deleteCliente"/>
         </MDTypography>
       ),
     });

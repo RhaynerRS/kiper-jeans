@@ -12,7 +12,7 @@ export default function Dropdown(props) {
 
   //delete o item e da refresh no componente
   const deleteItem = (id) => {
-    Axios.post("http://localhost:3002/deleteProduto", {
+    Axios.post(`http://localhost:3002/${props.delete}`, {
       id: id,
     }).then(async () => (await props.refresh(), setOpenMenu(false)));
   };
