@@ -22,13 +22,12 @@ function Produtos() {
       <Modal
         campos={[
           { name: "Nome", type: "text" },
-          { name: "Categoria", type: "text" },
           { name: "Preço", type: "number" },
           { name: "Quantidade", type: "number" },
         ]}
         setOpenModal={setOpenModal}
         openModal={openModal}
-        checkbox={tamanhos.camisetas}
+        checkbox={tamanhos}
       />
       <DashboardLayout>
         <DashboardNavbar />

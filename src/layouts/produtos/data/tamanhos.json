@@ -1,12 +1,12 @@
 {
-  "camisetas": [
+  "letras": [
     { "tamanho": "PP" },
     { "tamanho": "P" },
     { "tamanho": "M" },
     { "tamanho": "G" },
     { "tamanho": "GG" }
   ],
-  "calcas": [
+  "numeros": [
     { "tamanho": "36" },
     { "tamanho": "38" },
     { "tamanho": "40" },

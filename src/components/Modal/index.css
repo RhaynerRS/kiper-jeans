@@ -7,7 +7,7 @@
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1300;
 }
-.modalContainer{
+.modalContainer {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -21,30 +21,55 @@
 .modalHeader {
   margin-bottom: 16px !important;
   width: 100%;
-  display:flex;
+  display: flex;
 }
-.close{
-    margin-left:192px;
-    cursor:pointer;
-    color: #7b809a;
+.close {
+  margin-left: 192px;
+  cursor: pointer;
+  color: #7b809a;
 }
 
-.checkBoxes{
-  margin-top: 12px;;
-  display: grid; 
-  grid-template-columns: repeat(5, 33px); 
-  grid-template-rows: repeat(auto-fill, 23px); 
-  padding-inline: calc((100% - 265px)/2);
-  gap: 15px 25px; 
-  grid-template-areas: ". . . . ."; 
+.checkBoxes {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(5, 33px);
+  grid-template-rows: repeat(auto-fill, 23px);
+  padding-inline: calc((100% - 265px) / 2);
+  gap: 15px 25px;
+  grid-template-areas: ". . . . .";
   font-size: 14px;
   font-weight: 700;
   color: #7b809a;
 }
-.checkBoxes div{
+.checkBoxes div {
   display: flex;
   align-items: center;
 }
-.checkBoxes label{
+.checkBoxes label {
   margin-left: 3px;
+}
+
+.selectContainer:active {
+  border-width: 2px !important;
+  border-color:rgb(26, 115, 232) !important;
+}
+
+.select {
+  color: #495057;
+  padding: 0.75rem;
+  background-color: transparent;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  outline: none;
+}
+
+.select option{
+  color: #495057;
 }

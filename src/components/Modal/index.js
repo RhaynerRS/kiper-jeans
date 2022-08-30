@@ -4,15 +4,22 @@ import MDBox from "components/MDBox";
 import MDButton from "components/MDButton";
 import MDInput from "components/MDInput";
 import MDTypography from "components/MDTypography";
+import { useState } from "react";
 import "./index.css";
 
 export default function Modal(props) {
   const campos = props.campos;
-
+  const [categoria, setCategoria] = useState(0);
   //insere produtos
+
+  const handleSelect = ()=>{
+    setCategoria(document.getElementsByTagName("select")[0].options[document.getElementsByTagName("select")[0].selectedIndex].value)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const array = [...document.getElementsByTagName("input")];
+    const select = document.getElementsByTagName("select")[0].options[document.getElementsByTagName("select")[0].selectedIndex].text ;
     const arrayCampos = [];
     const tamanhosDisponiveis = [];
     array.map((item) => {
@@ -26,9 +33,9 @@ export default function Modal(props) {
     Axios.post("http://localhost:3002/insertProduto", {
       obj: {
         name: arrayCampos[0],
-        categoria: arrayCampos[1],
-        preco: arrayCampos[2],
-        quantidade: arrayCampos[3],
+        categoria: select,
+        preco: arrayCampos[1],
+        quantidade: arrayCampos[2],
         tamanhos: tamanhosDisponiveis,
       },
     });
@@ -59,7 +66,31 @@ export default function Modal(props) {
           {campos.map((campo) => {
             return <MDInput style={{ marginBlock: "8px" }} label={campo.name} type={campo.type} />;
           })}
-          {props.checkbox ? (
+          <div
+            class="MuiFormControl-root MuiTextField-root css-1lrs0mp-MuiFormControl-root-MuiTextField-root"
+            style={{ marginBlock: "8px" }}
+          >
+            <div class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root ">
+              <select className="select" onChange={handleSelect}>
+                <option value="0">Categoria</option>
+                <option value="1">Camiseta</option>
+                <option value="2">Calça</option>
+                <option value="3">Vestido</option>
+                <option value="4">Shorts</option>
+                <option value="5">Mochilas</option>
+              </select>
+              <fieldset
+                aria-hidden="true"
+                class="selectContainer MuiOutlinedInput-notchedOutline css-135f4hd-MuiOutlinedInput-notchedOutline"
+              >
+                <legend class="css-173wfxe">
+                  <span>Quantidade</span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+
+          {categoria!=5 && categoria!=0? (
             <div className="checkContainer">
               <MDTypography
                 component="a"
@@ -71,7 +102,7 @@ export default function Modal(props) {
                 Tamanhos
               </MDTypography>
               <div className="checkBoxes">
-                {props.checkbox.map((check) => {
+                {(categoria==1||categoria==3?props.checkbox.letras:props.checkbox.numeros).map((check) => {
                   return (
                     <div>
                       <input type="checkbox" value={check.tamanho} id={check.tamanho} />
