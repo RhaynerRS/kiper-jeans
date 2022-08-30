@@ -5,8 +5,10 @@ const app = express();
 const ProdutoModel = require("./models/Produto");
 const VendaModel = require("./models/Venda");
 const ClienteModel = require("./models/Cliente");
-var axios = require("axios");
-var qs = require("qs");
+const axios = require("axios");
+const qs = require("qs");
+const dayjs = require("dayjs");
+const chalk = require("chalk");
 
 require("dotenv").config({ path: "./.env" });
 
@@ -21,7 +23,7 @@ mongoose
     }
   )
   .then((res) => {
-    console.log("DB Connected!");
+    console.log(chalk.cyan("Conected to MongoDB!"));
   })
   .catch((err) => {
     console.log(Error, err.message);
@@ -92,10 +94,12 @@ app.get("/getVenda", async (req, res) => {
     .then((response) => {
       axios({
         method: "get",
-        url: "https://rl7-sandbox-api.useredecloud.com.br/merchant-statement/v1/sales?parentCompanyNumber=13381369&subsidiaries=13381369&startDate=2022-08-22&endDate=2022-09-05",
+        url: `https://rl7-sandbox-api.useredecloud.com.br/merchant-statement/v1/sales?parentCompanyNumber=13381369&subsidiaries=13381369&startDate=${dayjs(
+          dayjs().year() + "-" + (dayjs().month() + 1) + "-" + (dayjs().date()-6)
+        ).format("YYYY-MM-DD")}&endDate=${dayjs().format("YYYY-MM-DD")}`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer "+response.data.access_token,
+          Authorization: "Bearer " + response.data.access_token,
         },
       })
         .then(function (response) {
@@ -155,6 +159,6 @@ app.post("/deleteCliente", async (req, res) => {
   }
 });
 
-app.listen(3002, () => {
-  console.log("Server Runnig");
+app.listen(process.env.PORT||3002, () => {
+  console.log("Server Runnig on port "+chalk.cyan(`${process.env.PORT||3002}`));
 });
