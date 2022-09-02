@@ -69,8 +69,8 @@ function Produtos() {
     <MDSnackbar
       color="error"
       icon="warning"
-      title={errorData.code || "undefined"}
-      content={errorData.message || "undefined"}
+      title={errorData != "" ? errorData.code : "undefined"}
+      content={errorData != "" ? errorData.response.data : "undefined"}
       open={errorSB}
       onClose={closeErrorSB}
       close={closeErrorSB}

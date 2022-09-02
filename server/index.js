@@ -34,10 +34,13 @@ app.post("/insertProduto", async (req, res) => {
   const produto = new ProdutoModel(req.body.obj);
 
   try {
+    console.log(req.body);
     await produto.save();
-    res.send('Produto Inserido com Sucesso !!!')
+    res.send("Produto Inserido com Sucesso !!!");
   } catch (err) {
-    console.log(err);
+    if(req.body.obj.preco===undefined||req.body.obj.name===undefined||req.body.obj.quantidade===undefined) {
+      res.status(400).send("Todos os campos são obrigatorios")
+    }
   }
 });
 
@@ -55,7 +58,6 @@ app.post("/deleteProduto", async (req, res) => {
   const remove = await ProdutoModel.deleteOne({
     _id: req.body.id,
   });
-  console.log(req);
   try {
     res.send(remove);
   } catch (err) {
@@ -95,7 +97,9 @@ app.get("/getVenda", async (req, res) => {
     .then((response) => {
       axios({
         method: "get",
-        url: `https://rl7-sandbox-api.useredecloud.com.br/merchant-statement/v1/sales?parentCompanyNumber=13381369&subsidiaries=13381369&startDate=2022-08-26&endDate=${dayjs().format("YYYY-MM-DD")}`,
+        url: `https://rl7-sandbox-api.useredecloud.com.br/merchant-statement/v1/sales?parentCompanyNumber=13381369&subsidiaries=13381369&startDate=2022-08-26&endDate=${dayjs().format(
+          "YYYY-MM-DD"
+        )}`,
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + response.data.access_token,
@@ -131,7 +135,7 @@ app.post("/insertCliente", async (req, res) => {
 
   try {
     await cliente.save();
-    res.send('Cliente Inserido com Sucesso !!!')
+    res.send("Cliente Inserido com Sucesso !!!");
   } catch (err) {
     console.log(err);
   }
@@ -158,6 +162,6 @@ app.post("/deleteCliente", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT||3002, () => {
-  console.log("Server Runnig on port "+chalk.cyan(`${process.env.PORT||3002}`));
+app.listen(process.env.PORT || 3002, () => {
+  console.log("Server Runnig on port " + chalk.cyan(`${process.env.PORT || 3002}`));
 });
