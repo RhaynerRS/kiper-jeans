@@ -12,14 +12,34 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import projectsTableData from "layouts/clientes/data/projectsTableData";
+import {Data} from "layouts/clientes/data/projectsTableData";
 import { Icon } from "@mui/material";
-import { useState } from "react";
+import Axios from "axios";
+import { useEffect, useState } from "react";
 import ModalCliente from "components/ModalCliente";
 import MDSnackbar from "components/MDSnackbar";
 
 function Clientes() {
-  const { columns: pColumns, rows: pRows } = projectsTableData();
+  const [Items,SetItems]=useState([])
+
+  function getData() {
+    SetItems(JSON.parse(sessionStorage.getItem("clientes")) || []);
+  }
+
+  //requisita a API para coletar dados atualizados
+  const refresh = () => {
+    Axios.get("http://localhost:3002/getCliente").then((res) => {
+      sessionStorage.setItem("clientes", JSON.stringify(res.data));
+      getData();
+    });
+  };
+
+  //atualiza os items toda vez q o sessionStorage for alterado
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const { columns: pColumns, rows: pRows } = Data({Items:Items, refresh: refresh});
   const [openModal, setOpenModal] = useState(false);
   const tamanhos = require("./data/tamanhos.json");
 
@@ -27,6 +47,7 @@ function Clientes() {
   const [successSB, setSuccessSB] = useState(false);
   const [errorSB, setErrorSB] = useState(false);
   const [errorData, setErrorData] = useState("");
+
 
   //open and close notificaçoes
   const openSuccessSB = () => setSuccessSB(true);
@@ -41,8 +62,8 @@ function Clientes() {
     <MDSnackbar
       color="success"
       icon="check"
-      title={errorData.code || "undefined"}
-      content={errorData.code || "undefined"}
+      title="Sucesso !"
+      content={"O Cliente foi adicionado"}
       open={successSB}
       onClose={closeSuccessSB}
       close={closeSuccessSB}
@@ -66,6 +87,7 @@ function Clientes() {
   return (
     <>
       {renderErrorSB}
+      {renderSuccessSB}
       <ModalCliente
         campos={[
           { name: "Nome", type: "text" },
@@ -76,6 +98,7 @@ function Clientes() {
         setOpenModal={setOpenModal}
         openModal={openModal}
         checkbox={tamanhos.camisetas}
+        refresh={refresh}
         errorNotification={openErrorSB}
         sucessNotification={openSuccessSB}
       />

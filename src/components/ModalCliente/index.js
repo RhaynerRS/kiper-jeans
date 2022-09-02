@@ -28,7 +28,8 @@ export default function ModalCliente(props) {
     })
       .then(function (response) {
         // I need this data here ^^
-        return response.data;
+        props.sucessNotification();
+        props.refresh();
       })
       .catch(function (error) {
         props.errorNotification(error);

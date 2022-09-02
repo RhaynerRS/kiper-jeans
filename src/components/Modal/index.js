@@ -12,14 +12,21 @@ export default function Modal(props) {
   const [categoria, setCategoria] = useState(0);
   //insere produtos
 
-  const handleSelect = ()=>{
-    setCategoria(document.getElementsByTagName("select")[0].options[document.getElementsByTagName("select")[0].selectedIndex].value)
-  }
+  const handleSelect = () => {
+    setCategoria(
+      document.getElementsByTagName("select")[0].options[
+        document.getElementsByTagName("select")[0].selectedIndex
+      ].value
+    );
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const array = [...document.getElementsByTagName("input")];
-    const select = document.getElementsByTagName("select")[0].options[document.getElementsByTagName("select")[0].selectedIndex].text ;
+    const select =
+      document.getElementsByTagName("select")[0].options[
+        document.getElementsByTagName("select")[0].selectedIndex
+      ].text;
     const arrayCampos = [];
     const tamanhosDisponiveis = [];
     array.map((item) => {
@@ -38,6 +45,13 @@ export default function Modal(props) {
         quantidade: arrayCampos[2],
         tamanhos: tamanhosDisponiveis,
       },
+    }).then(function (response) {
+      // I need this data here ^^
+      props.sucessNotification();
+      props.refresh();
+    })
+    .catch(function (error) {
+      props.errorNotification(error);
     });
   };
 
@@ -90,7 +104,7 @@ export default function Modal(props) {
             </div>
           </div>
 
-          {categoria!=5 && categoria!=0? (
+          {categoria != 5 && categoria != 0 ? (
             <div className="checkContainer">
               <MDTypography
                 component="a"
@@ -102,7 +116,10 @@ export default function Modal(props) {
                 Tamanhos
               </MDTypography>
               <div className="checkBoxes">
-                {(categoria==1||categoria==3?props.checkbox.letras:props.checkbox.numeros).map((check) => {
+                {(categoria == 1 || categoria == 3
+                  ? props.checkbox.letras
+                  : props.checkbox.numeros
+                ).map((check) => {
                   return (
                     <div>
                       <input type="checkbox" value={check.tamanho} id={check.tamanho} />

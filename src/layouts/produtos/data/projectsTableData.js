@@ -1,30 +1,15 @@
 import MDTypography from "components/MDTypography";
-import Axios from "axios";
-import { useEffect, useState } from "react";
 import Dropdown from "components/Dropdown";
 
-export default function Data() {
+export function Data(props) {
   const rowsItem = [];
-  const [Items, SetItems] = useState([]);
-
-  function getData() {
-    SetItems(JSON.parse(sessionStorage.getItem("produtos")) || []);
-  }
-
-  //atualiza os items toda vez q o sessionStorage for alterado
-  useEffect(() => {
-    getData();
-    window.addEventListener("storage", () => {
-      getData();
-    });
-  }, []);
 
   const Produto = ({ name }) => (
     <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
       {name}
     </MDTypography>
   );
-  Items.forEach((item) => {
+  props.Items.forEach((item) => {
     rowsItem.push({
       cod: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
@@ -51,7 +36,7 @@ export default function Data() {
       ),
       acoes: (
         <MDTypography component="a" href="#" color="text">
-          <Dropdown id={item._id} refresh={getData} delete="deleteProduto"/>
+          <Dropdown id={item._id} refresh={props.refresh} delete="deleteProduto" />
         </MDTypography>
       ),
     });

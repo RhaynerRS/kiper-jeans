@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import dias from './dias.js';
+import dias from '../../../functions/dias';
 
 const labels = [];
 const vendasArray = [];

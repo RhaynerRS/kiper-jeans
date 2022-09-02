@@ -35,6 +35,7 @@ app.post("/insertProduto", async (req, res) => {
 
   try {
     await produto.save();
+    res.send('Produto Inserido com Sucesso !!!')
   } catch (err) {
     console.log(err);
   }
@@ -94,9 +95,7 @@ app.get("/getVenda", async (req, res) => {
     .then((response) => {
       axios({
         method: "get",
-        url: `https://rl7-sandbox-api.useredecloud.com.br/merchant-statement/v1/sales?parentCompanyNumber=13381369&subsidiaries=13381369&startDate=${dayjs(
-          dayjs().year() + "-" + (dayjs().month() + 1) + "-" + (dayjs().date()-6)
-        ).format("YYYY-MM-DD")}&endDate=${dayjs().format("YYYY-MM-DD")}`,
+        url: `https://rl7-sandbox-api.useredecloud.com.br/merchant-statement/v1/sales?parentCompanyNumber=13381369&subsidiaries=13381369&startDate=2022-08-26&endDate=${dayjs().format("YYYY-MM-DD")}`,
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + response.data.access_token,
@@ -132,6 +131,7 @@ app.post("/insertCliente", async (req, res) => {
 
   try {
     await cliente.save();
+    res.send('Cliente Inserido com Sucesso !!!')
   } catch (err) {
     console.log(err);
   }
@@ -151,7 +151,6 @@ app.post("/deleteCliente", async (req, res) => {
   const remove = await ClienteModel.deleteOne({
     _id: req.body.id,
   });
-  console.log(req);
   try {
     res.send(remove);
   } catch (err) {
