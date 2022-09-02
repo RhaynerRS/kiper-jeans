@@ -1,25 +1,27 @@
 import dayjs from "dayjs";
-import dias from "./dias.js";
 
-const labels = [];
-const vendasArray = [];
-const date = dayjs();
+export default function dias(){
+  const dias = [];
 
-const vendas = require("../../vendas/data/dados.json");
+  for (let i = 0; i < dayjs().daysInMonth(); i++) {
+    dias.push(dayjs().daysInMonth() - (dayjs().daysInMonth() - i) + 1);
+  }
 
-for (let i = 6; i >= 0; i--) {
-  labels.push(dias()[dayjs().date() - i - 1]);
-  let vendasDiarias = 0;
-  vendas.content.transactions.forEach((venda) => {
-    const diference = date.diff(venda.saleDate, "day");
-    if (diference == i) {
-      vendasDiarias++;
+  for (let p = 5;p>=0;p--) {
+    dias.push((dayjs(`${dayjs().month()-1}`).daysInMonth() - p))
+  }
+
+  const proxy = new Proxy(dias, {
+    get(target, prop) {
+      if (!isNaN(prop)){
+        prop = parseInt(prop, 10);
+        if (prop<0){
+          prop += target.length;
+        }
+      }
+      return target[prop];
     }
-  });
-  vendasArray.push(vendasDiarias);
-};
+  })
 
-export default {
-  labels: labels,
-  datasets: { label: "Sales", data: vendasArray },
-};
+  return proxy;
+}
