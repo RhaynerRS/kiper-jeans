@@ -33,7 +33,7 @@ export function Data(props) {
       ),
       acoes: (
         <MDTypography component="a" href="#" color="text">
-          <Dropdown id={item._id} refresh={props.refresh} delete="deleteCliente"/>
+          <Dropdown id={item._id} refresh={props.refresh} edit={props.setOpenModal} item={item} delete="deleteCliente"/>
         </MDTypography>
       ),
     });

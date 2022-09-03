@@ -36,6 +36,15 @@ export default function ModalCliente(props) {
       });
   };
 
+  const edit = ()=>{
+    campos.forEach((campo)=>{
+      document.getElementsByName(campo.name).forEach((item=>{item.value=campo.default}));
+      console.log(campo.default)
+    })
+  }
+
+  if (props.data!=undefined){edit()}
+
   return (
     <div className="modal" style={props.openModal ? { display: "block" } : { display: "none" }}>
       <MDBox
@@ -53,13 +62,13 @@ export default function ModalCliente(props) {
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
             Cadastro de Clientes
           </MDTypography>
-          <Icon className="close" onClick={() => props.setOpenModal(false)}>
+          <Icon className="close" onClick={() => props.setOpenModal({status:false})}>
             close
           </Icon>
         </div>
         <form onSubmit={handleSubmit} style={{ display: "contents" }}>
           {campos.map((campo) => {
-            return <MDInput style={{ marginBlock: "8px" }} label={campo.name} type={campo.type} />;
+            return <MDInput name={campo.name} style={{ marginBlock: "8px" }} label={campo.name} type={campo.type} />;
           })}
           <MDButton
             type="submit"

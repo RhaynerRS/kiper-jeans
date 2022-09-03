@@ -39,8 +39,8 @@ function Produtos() {
     getData();
   }, []);
 
-  const { columns: pColumns, rows: pRows } = Data({ Items: Items, refresh: refresh });
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState({status:false});
+  const { columns: pColumns, rows: pRows } = Data({ Items: Items, refresh: refresh, setOpenModal:setOpenModal});
   const tamanhos = require("./data/tamanhos.json");
 
   //open and close notificaçoes
@@ -69,8 +69,8 @@ function Produtos() {
     <MDSnackbar
       color="error"
       icon="warning"
-      title={errorData != "" ? errorData.code : "undefined"}
-      content={errorData != "" ? errorData.response.data : "undefined"}
+      title={errorData !== "" ? errorData.code : "undefined"}
+      content={errorData !== "" ? errorData.response.data : "undefined"}
       open={errorSB}
       onClose={closeErrorSB}
       close={closeErrorSB}
@@ -84,14 +84,15 @@ function Produtos() {
       {renderErrorSB}
       <Modal
         campos={[
-          { name: "Nome", type: "text" },
-          { name: "Preço", type: "number" },
-          { name: "Quantidade", type: "number" },
+          { name: "Nome", type: "text", default:(openModal.data!=undefined?openModal.data.name:"")},
+          { name: "Preço", type: "number", default:(openModal.data!=undefined?openModal.data.preco:"") },
+          { name: "Quantidade", type: "number", default:(openModal.data!=undefined?openModal.data.quantidade:"") },
         ]}
         setOpenModal={setOpenModal}
-        openModal={openModal}
+        openModal={openModal.status}
         checkbox={tamanhos}
         refresh={refresh}
+        data={openModal.data}
         errorNotification={openErrorSB}
         sucessNotification={openSuccessSB}
       />
@@ -126,7 +127,7 @@ function Produtos() {
                       alignItems: "center",
                     }}
                     bgColor="white"
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => {setOpenModal({status:true})}}
                   >
                     <Icon color="white">add</Icon>
                   </MDBox>

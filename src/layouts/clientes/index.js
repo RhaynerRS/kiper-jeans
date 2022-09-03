@@ -39,8 +39,8 @@ function Clientes() {
     getData();
   }, []);
 
-  const { columns: pColumns, rows: pRows } = Data({Items:Items, refresh: refresh});
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState({status:false});
+  const { columns: pColumns, rows: pRows } = Data({Items:Items, refresh: refresh, setOpenModal:setOpenModal});
   const tamanhos = require("./data/tamanhos.json");
 
   //variales notifications
@@ -90,15 +90,16 @@ function Clientes() {
       {renderSuccessSB}
       <ModalCliente
         campos={[
-          { name: "Nome", type: "text" },
-          { name: "Data Nascimento", type: "date" },
-          { name: "Celular", type: "tel" },
-          { name: "Documento", type: "number" },
+          { name: "Nome", type: "text", default:(openModal.data!=undefined?openModal.data.nome:"") },
+          { name: "Data Nascimento", type: "date", default:(openModal.data!=undefined?openModal.data.datanascimento:"") },
+          { name: "Celular", type: "tel", default:(openModal.data!=undefined?openModal.data.celular:"") },
+          { name: "Documento", type: "number", default:(openModal.data!=undefined?openModal.data.documento:"") },
         ]}
         setOpenModal={setOpenModal}
-        openModal={openModal}
+        openModal={openModal.status}
         checkbox={tamanhos.camisetas}
         refresh={refresh}
+        data={openModal.data}
         errorNotification={openErrorSB}
         sucessNotification={openSuccessSB}
       />
@@ -133,7 +134,7 @@ function Clientes() {
                       alignItems: "center",
                     }}
                     bgColor="white"
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => setOpenModal({status:true})}
                   >
                     <Icon color="white">add</Icon>
                   </MDBox>

@@ -17,6 +17,12 @@ export default function Dropdown(props) {
     }).then(async () => (await props.refresh(), setOpenMenu(false)));
   };
 
+  const editItem = (item) => {
+    props.edit({status:true,data:item});
+    setOpenMenu(false);
+    console.log(item)
+  }
+
   return (
     <div className="dropdown">
       <Icon onClick={handleOpenMenu}>more_vert</Icon>
@@ -36,7 +42,7 @@ export default function Dropdown(props) {
           title="Delete"
           onClick={() => deleteItem(props.id)}
         />
-        <NotificationItem icon={<Icon>edit</Icon>} title="Edit" />
+        <NotificationItem icon={<Icon>edit</Icon>} title="Edit" onClick={()=>editItem(props.item)}/>
       </Menu>
     </div>
   );
