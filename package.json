@@ -52,13 +52,13 @@
   "main": "public/main.js",
   "homepage": "./",
   "scripts": {
-    "start": "cross-env HTTPS=true SSL_CRT_FILE=localhost.pem SSL_KEY_FILE=localhost-key.pem  react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "electron:serve": "concurrently -k \"cross-env BROWSER=none npm run start\" \"npm run electron:start\"",
     "electron:build": "",
     "electron:start": "wait-on tcp:3000 && electron .",
-    "open": "concurrently -k \"npm run electron:serve\" \"cd server && node .\\index.js\""
+    "open": "concurrently -k \"npm run electron:serve\" \"cd server && npm run server\""
   },
   "eslintConfig": {
     "extends": [

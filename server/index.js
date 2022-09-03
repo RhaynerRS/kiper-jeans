@@ -10,15 +10,16 @@ const qs = require("qs");
 const dayjs = require("dayjs");
 const chalk = require("chalk");
 
-require("dotenv").config({ path: "./.env" });
+require("dotenv").config({
+  path: "./.env"
+});
 
 app.use(express.json());
 app.use(cors());
 
 mongoose
   .connect(
-    `mongodb+srv://${process.env.LOGIN}:${process.env.SENHA}cluster0.jryjzsd.mongodb.net/kiper-jeans?retryWrites=true&w=majority`,
-    {
+    `mongodb+srv://${process.env.LOGIN}:${process.env.SENHA}cluster0.jryjzsd.mongodb.net/kiper-jeans?retryWrites=true&w=majority`, {
       useNewUrlParser: true,
     }
   )
@@ -34,11 +35,10 @@ app.post("/insertProduto", async (req, res) => {
   const produto = new ProdutoModel(req.body.obj);
 
   try {
-    console.log(req.body);
     await produto.save();
     res.send("Produto Inserido com Sucesso !!!");
   } catch (err) {
-    if(req.body.obj.preco===undefined||req.body.obj.name===undefined||req.body.obj.quantidade===undefined) {
+    if (req.body.obj.preco === undefined || req.body.obj.name === undefined || req.body.obj.quantidade === undefined) {
       res.status(400).send("Todos os campos são obrigatorios")
     }
   }
@@ -64,6 +64,16 @@ app.post("/deleteProduto", async (req, res) => {
     console.log(err);
   }
 });
+
+app.put("/editProduto", async (req, res) => {
+  const update = await ProdutoModel.findByIdAndUpdate(req.body.id, req.body.obj);
+
+  try {
+    res.send(update);
+  } catch (err) {
+    res.send(err);
+  }
+})
 
 //lidar com vendas
 app.post("/insertVenda", async (req, res) => {
@@ -96,15 +106,15 @@ app.get("/getVenda", async (req, res) => {
   axios(config)
     .then((response) => {
       axios({
-        method: "get",
-        url: `https://rl7-sandbox-api.useredecloud.com.br/merchant-statement/v1/sales?parentCompanyNumber=13381369&subsidiaries=13381369&startDate=2022-08-26&endDate=${dayjs().format(
+          method: "get",
+          url: `https://rl7-sandbox-api.useredecloud.com.br/merchant-statement/v1/sales?parentCompanyNumber=13381369&subsidiaries=13381369&startDate=2022-08-26&endDate=${dayjs().format(
           "YYYY-MM-DD"
         )}`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + response.data.access_token,
-        },
-      })
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + response.data.access_token,
+          },
+        })
         .then(function (response) {
           res.send(response.data);
         })
@@ -134,10 +144,13 @@ app.post("/insertCliente", async (req, res) => {
   const cliente = new ClienteModel(req.body.obj);
 
   try {
+    console.log(req.body)
     await cliente.save();
     res.send("Cliente Inserido com Sucesso !!!");
   } catch (err) {
-    console.log(err);
+    if (req.body.obj.datanascimento === '' || req.body.obj.nome === '' || req.body.obj.documento === '' || req.body.obj.celular === '') {
+      res.status(400).send("Todos os campos são obrigatorios")
+    }
   }
 });
 
