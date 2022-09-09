@@ -1,5 +1,6 @@
 import MDTypography from "components/MDTypography";
 import Dropdown from "components/Dropdown";
+import getCategoriasById from "../../../functions/categorias";
 
 export function Data(props) {
   const rowsItem = [];
@@ -20,7 +21,7 @@ export function Data(props) {
       nome: <Produto name={item.name} />,
       categoria: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {item.categoria}
+          {getCategoriasById(item.categoria)}
         </MDTypography>
       ),
       preco: (
@@ -37,7 +38,13 @@ export function Data(props) {
       ),
       acoes: (
         <MDTypography component="a" href="#" color="text">
-          <Dropdown id={item._id} refresh={props.refresh} edit={props.setOpenModal} item={item} delete="deleteProduto" />
+          <Dropdown
+            id={item._id}
+            refresh={props.refresh}
+            edit={props.setOpenModal}
+            item={item}
+            delete="deleteProduto"
+          />
         </MDTypography>
       ),
     });
