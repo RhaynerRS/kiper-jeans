@@ -42,7 +42,7 @@ export function Data(props) {
     columns: [
       { Header: "cod", accessor: "cod", align: "left" },
       { Header: "nome", accessor: "nome", width: "30%", align: "left" },
-      { Header: "data de nascimento", accessor: "datanascimento", align: "center" },
+      { Header: "nascimento", accessor: "datanascimento", align: "center" },
       { Header: "documento", accessor: "documento", align: "center" },
       { Header: "Ações", accessor: "acoes", align: "center" },
     ],

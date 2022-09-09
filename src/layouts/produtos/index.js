@@ -21,6 +21,7 @@ function Produtos() {
   const [successSB, setSuccessSB] = useState(false);
   const [errorSB, setErrorSB] = useState(false);
   const [errorData, setErrorData] = useState("");
+  const [successData, setSuccessData] = useState("");
 
   function getData() {
     SetItems(JSON.parse(sessionStorage.getItem("produtos")) || []);
@@ -39,12 +40,19 @@ function Produtos() {
     getData();
   }, []);
 
-  const [openModal, setOpenModal] = useState({status:false});
-  const { columns: pColumns, rows: pRows } = Data({ Items: Items, refresh: refresh, setOpenModal:setOpenModal});
+  const [openModal, setOpenModal] = useState({ status: false });
+  const { columns: pColumns, rows: pRows } = Data({
+    Items: Items,
+    refresh: refresh,
+    setOpenModal: setOpenModal,
+  });
   const tamanhos = require("./data/tamanhos.json");
 
   //open and close notificaçoes
-  const openSuccessSB = () => setSuccessSB(true);
+  const openSuccessSB = (data) => {
+    setSuccessData(data);
+    setSuccessSB(true);
+  };
   const closeSuccessSB = () => setSuccessSB(false);
   const openErrorSB = (data) => {
     setErrorSB(true);
@@ -56,8 +64,8 @@ function Produtos() {
     <MDSnackbar
       color="success"
       icon="check"
-      title="Sucesso !"
-      content={"O Cliente foi adicionado"}
+      title={`Sucesso! status ${successData!==""?successData.status:"undefined"}`}
+      content={successData!==""?successData.message:"undefined"}
       open={successSB}
       onClose={closeSuccessSB}
       close={closeSuccessSB}
@@ -84,9 +92,21 @@ function Produtos() {
       {renderErrorSB}
       <Modal
         campos={[
-          { name: "Nome", type: "text", default:(openModal.data!=undefined?openModal.data.name:"")},
-          { name: "Preço", type: "number", default:(openModal.data!=undefined?openModal.data.preco:"") },
-          { name: "Quantidade", type: "number", default:(openModal.data!=undefined?openModal.data.quantidade:"") },
+          {
+            name: "Nome",
+            type: "text",
+            default: openModal.data != undefined ? openModal.data.name : "",
+          },
+          {
+            name: "Preço",
+            type: "number",
+            default: openModal.data != undefined ? openModal.data.preco : "",
+          },
+          {
+            name: "Quantidade",
+            type: "number",
+            default: openModal.data != undefined ? openModal.data.quantidade : "",
+          },
         ]}
         setOpenModal={setOpenModal}
         openModal={openModal.status}
@@ -127,7 +147,9 @@ function Produtos() {
                       alignItems: "center",
                     }}
                     bgColor="white"
-                    onClick={() => {setOpenModal({status:true})}}
+                    onClick={() => {
+                      setOpenModal({ status: true });
+                    }}
                   >
                     <Icon color="white">add</Icon>
                   </MDBox>

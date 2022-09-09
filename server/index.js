@@ -74,7 +74,8 @@ app.put("/editProduto", async (req, res) => {
   const update = await ProdutoModel.findByIdAndUpdate(req.body.id, req.body.obj);
 
   try {
-    res.send(update);
+    update
+    res.send({message:"Produto alterado com sucesso!"});
   } catch (err) {
     res.send(err);
   }
@@ -180,6 +181,25 @@ app.post("/deleteCliente", async (req, res) => {
     res.send(remove);
   } catch (err) {
     console.log(err);
+  }
+});
+
+app.put("/editCliente", async (req, res) => {
+  const update = await ClienteModel.findByIdAndUpdate(req.body.id, req.body.obj);
+
+  try {
+    res.send(update);
+  } catch (err) {
+    if (
+      req.body.obj.datanascimento === "" ||
+      req.body.obj.nome === "" ||
+      req.body.obj.documento === "" ||
+      req.body.obj.celular === ""
+    ) {
+      res.status(400).send("Todos os campos são obrigatorios");
+    }else{
+      res.send(err);
+    }
   }
 });
 

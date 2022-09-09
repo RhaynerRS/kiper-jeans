@@ -66,7 +66,7 @@ export default function Modal(props) {
         },
       })
         .then(function (response) {
-          props.sucessNotification();
+          props.sucessNotification({message:response.data.message,status:response.status});
           props.refresh();
         })
         .catch(function (error) {
