@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require("electron");
+const path = require("path");
+const isDev = require("electron-is-dev");
 require("@electron/remote/main").initialize();
 
 function createWindow() {
@@ -13,7 +15,9 @@ function createWindow() {
     },
     autoHideMenuBar: true,
   });
-  win.loadURL("https://localhost:3000");
+  win.loadURL(
+    isDev ? "https://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`
+  );
   //win.setMenu(null);
 }
 

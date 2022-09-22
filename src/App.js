@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Sidenav from "examples/Sidenav";
@@ -75,7 +75,7 @@ export default function App() {
   const getData = async () => {
     await Axios.get("http://localhost:3002/getVenda")
       .then(function (response) {
-        sessionStorage.setItem("vendas", JSON.stringify(response.data.content.transactions));
+        sessionStorage.setItem("vendas", JSON.stringify(response.data));
       })
       .catch(function (error) {
         console.log(error);
@@ -100,7 +100,7 @@ export default function App() {
 
   //faz as requisiçoes a cada 5 minutos
   useEffect(() => {
-    getData();
+    setTimeout(getData(),1500)
     const interval = setInterval(() => {
       getData();
       console.log("refresh");
@@ -121,31 +121,7 @@ export default function App() {
       return null;
     });
 
-  return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
-      <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
-        <CssBaseline />
-        {layout === "dashboard" && (
-          <>
-            <Sidenav
-              color={sidenavColor}
-              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-              brandName="Material Dashboard 2"
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-            <Configurator />
-          </>
-        )}
-        {layout === "vr" && <Configurator />}
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Routes>
-      </ThemeProvider>
-    </CacheProvider>
-  ) : (
+  return (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
       {layout === "dashboard" && (

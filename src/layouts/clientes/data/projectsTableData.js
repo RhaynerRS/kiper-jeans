@@ -32,8 +32,8 @@ export function Data(props) {
         </MDTypography>
       ),
       acoes: (
-        <MDTypography component="a" href="#" color="text">
-          <Dropdown id={item._id} refresh={props.refresh} edit={props.setOpenModal} item={item} delete="deleteCliente"/>
+        <MDTypography component="p" color="text">
+          <Dropdown id={item._id} refresh={props.refresh} edit={props.setOpenModal} typeOf="menu" item={item} delete="deleteCliente"/>
         </MDTypography>
       ),
     });

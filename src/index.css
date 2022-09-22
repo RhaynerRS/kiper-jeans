@@ -18,3 +18,14 @@
 ::-webkit-scrollbar-thumb:hover {
   background: transparent;
 }
+
+
+@media (max-width: 1443px)
+{
+  .css-znq6tb-MuiTypography-root {
+    font-size: 0.75rem !important;
+  }
+  .css-1tvc6i6-MuiTypography-root{
+    font-size: 1.2rem !important;
+  }
+}
