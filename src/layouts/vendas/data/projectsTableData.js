@@ -1,57 +1,53 @@
 import MDTypography from "components/MDTypography";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
+import Dropdown from "components/Dropdown";
 
-export default function Data() {
+export function Data(props) {
   const rowsItem = [];
-  const [Items, SetItems] = useState([]);
 
-  function getData() {
-    SetItems(JSON.parse(sessionStorage.getItem("vendas")) || []);
-  }
-
-  //atualiza os items toda vez q o sessionStorage for alterado
-  useEffect(() => {
-    getData();
-    window.addEventListener("storage", () => {
-      getData();
-    });
-  }, []);
-
-  Items.forEach((item) => {
+  props.Items.forEach((item) => {
+    const compraTipo = () => {
+      switch (item.modality.type) {
+        case "CREDIT":
+          return "CREDITO";
+        case "DEBIT":
+          return "DEBITO";
+        default:
+          return item.modality.type;
+      }
+    };
     rowsItem.push({
       cod: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {item.ard || item.tid}
+          {item._id}
         </MDTypography>
       ),
       data: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {dayjs(item.saleDate).format("DD/MM/YYYY")}
+          {dayjs(item.data).format("DD/MM/YYYY")}
         </MDTypography>
       ),
       valor: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
           {new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
-            item.amount
-          )}
-        </MDTypography>
-      ),
-      taxa: (
-        <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
-            item.feeTotal
+            item.valor
           )}
         </MDTypography>
       ),
       pagamento: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {item.modality.type}
+          {item.formaDePagamento}
         </MDTypography>
       ),
-      status: (
-        <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {item.status || "PENDDING"}
+      produtos: (
+        <MDTypography component="p" variant="button" color="text" fontWeight="medium">
+          <Dropdown
+            id={item._id}
+            item={item}
+            produtos={item.produtos}
+            delete="deleteProduto"
+          />
         </MDTypography>
       ),
     });
@@ -60,10 +56,9 @@ export default function Data() {
     columns: [
       { Header: "cod", accessor: "cod", align: "left" },
       { Header: "data", accessor: "data", align: "left" },
-      { Header: "valor liquido", accessor: "valor", align: "center" },
-      { Header: "taxa", accessor: "taxa", align: "center" },
+      { Header: "valor", accessor: "valor", align: "center" },
       { Header: "forma de pagamento", accessor: "pagamento", align: "left" },
-      { Header: "status", accessor: "status", align: "center" },
+      { Header: "produtos", accessor: "produtos", align: "left" },
     ],
 
     rows: [...rowsItem],
