@@ -73,7 +73,7 @@ export default function Modal(props) {
           props.errorNotification(error);
         });
       setIsEdit(false);
-      closeModal({ setOpenModal: props.setOpenModal, setIsEdit: setIsEdit });
+      closeModal({ setOpenModal: props.setOpenModal, setIsEdit: setIsEdit, campos:campos, setCategoria:setCategoria });
     } else {
       Axios.post("http://localhost:3002/insertProduto", {
         obj: {
@@ -85,7 +85,7 @@ export default function Modal(props) {
         },
       })
         .then(function (response) {
-          props.sucessNotification();
+          props.sucessNotification({message:response.data.message,status:response.status});
           props.refresh();
         })
         .catch(function (error) {
@@ -113,7 +113,7 @@ export default function Modal(props) {
           </MDTypography>
           <Icon
             className="close"
-            onClick={() => closeModal({ setOpenModal: props.setOpenModal, setIsEdit: setIsEdit })}
+            onClick={() => closeModal({ setOpenModal: props.setOpenModal, setIsEdit: setIsEdit, campos:campos, setCategoria:setCategoria })}
           >
             close
           </Icon>
@@ -126,6 +126,7 @@ export default function Modal(props) {
                 style={{ marginBlock: "8px" }}
                 label={campo.name}
                 type={campo.type}
+                step="any"
               />
             );
           })}

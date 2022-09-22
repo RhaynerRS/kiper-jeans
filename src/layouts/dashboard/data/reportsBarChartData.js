@@ -1,25 +1,33 @@
 import dayjs from "dayjs";
-import dias from '../../../functions/dias';
+import { useEffect, useState } from "react";
 
-const labels = [];
-const vendasArray = [];
-const date = dayjs();
+function ReportsBarChartData() {
+  const [vendas, setVendas] = useState([]);
+  const [labels, setLabels] = useState([]);
+  const [vendasDiarias, setVendasDiarias] = useState([]);
 
-const vendas = require("../../vendas/data/dados.json");
+  const setGraph = () => {
+    setVendas([]);
+    setLabels([]);
+    setVendasDiarias([]);
 
-for (let i = 6; i >= 0; i--) {
-  labels.push(dias()[(dayjs().date() - i)-1]);
-  let vendasDiarias = 0;
-  vendas.content.transactions.forEach((venda) => {
-    const diference = date.diff(venda.saleDate, "day");
-    if (diference == i) {
-      vendasDiarias++;
+    setVendas(JSON.parse(sessionStorage.getItem("vendas"))||[]);
+    for (let i = 6; i >= 0; i--) {
+      setLabels((ant) => [...ant, dayjs().subtract(i, "days").format("DD")]);
+      let vendasDiarias = 0;
+      vendas.forEach((venda) => {
+        const diference = dayjs().diff(venda.data, "day");
+        if (diference == i) {
+          vendasDiarias++;
+        }
+      });
+      setVendasDiarias((ant) => [...ant, vendasDiarias]);
     }
-  });
-  vendasArray.push(vendasDiarias);
-};
+  };
 
-export default {
-  labels: labels,
-  datasets: { label: "Sales", data: vendasArray },
-};
+  useEffect(() => {
+    setGraph();
+  }, 1000);
+
+  return { labels: 'a', datasets: { label: "Vendas", data: 0 } };
+}

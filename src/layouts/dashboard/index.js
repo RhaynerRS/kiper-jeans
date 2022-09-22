@@ -5,7 +5,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
+import ReportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
@@ -18,6 +18,8 @@ function Dashboard() {
   const [clientes, setClientes] = useState([]);
   const [produtos, setProdutos] = useState([]);
   const [vendas, setVendas] = useState([]);
+  const [labels, setLabels] = useState([]);
+  const [vendasDiarias, setVendasDiarias] = useState([]);
 
   function getData() {
     setClientes(JSON.parse(sessionStorage.getItem("clientes")) || []);
@@ -25,16 +27,49 @@ function Dashboard() {
     setVendas(JSON.parse(sessionStorage.getItem("vendas")) || []);
   }
 
+  function ReportsBarChartData() {
+    const labelsTemp = [];
+    const vendasDiariasTemp = [];
+    for (let i = 6; i >= 0; i--) {
+      labelsTemp.push(dayjs().subtract(i, "days").format("DD"));
+      let vendasDiarias = 0;
+      vendas.forEach((venda) => {
+        const diference = dayjs().diff(venda.saleDate, "day");
+        if (diference == i) {
+          vendasDiarias++;
+        }
+      });
+      vendasDiariasTemp.push(vendasDiarias);
+    }
+
+    setLabels(labelsTemp);
+    setVendasDiarias(vendasDiariasTemp);
+  }
+
   useEffect(() => {
     getData();
-    window.addEventListener("storage", () => {
+    ReportsBarChartData();
+    setInterval((x,y) => {
+      var objectAreSame=true;
+      for (let propName in x) {
+        if (x[propName]!==y[propName]){
+          objectAreSame=false;
+          console.log(x[propName])
+          break;
+        }
+      }
       getData();
-    });
+      ReportsBarChartData();
+    },2000);
   }, []);
+
+  useEffect(() => {
+    ReportsBarChartData();
+  }, [vendas]);
 
   let receita = 0;
   vendas.forEach((item) => {
-    receita += item.amount;
+    receita += item.valor;
   });
 
   return (
@@ -95,7 +130,7 @@ function Dashboard() {
                   title="Vendas Semanais"
                   description="Veja a quantidade de vendas dos ultimos 7 dias"
                   date={dayjs().format("DD [de] MMMM")}
-                  chart={reportsBarChartData}
+                  chart={{ labels: labels, datasets: { label: "Vendas", data: vendasDiarias } }}
                 />
               </MDBox>
             </Grid>
@@ -132,7 +167,6 @@ function Dashboard() {
             <Grid item xs={12} md={6} lg={12}>
               <Projects />
             </Grid>
-
           </Grid>
         </MDBox>
       </MDBox>

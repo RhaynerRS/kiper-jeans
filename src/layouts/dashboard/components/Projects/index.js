@@ -8,10 +8,10 @@ import MDTypography from "components/MDTypography";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import data from "layouts/dashboard/components/Projects/data";
+import Data from "layouts/dashboard/components/Projects/data";
 
 function Projects() {
-  const { columns, rows } = data();
+  const { columns, rows } = Data(JSON.parse(sessionStorage.getItem("vendas")));
   const [menu, setMenu] = useState(null);
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);

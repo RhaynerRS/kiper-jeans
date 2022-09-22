@@ -1,7 +1,12 @@
 export function closeModal(props) {
-  props.setIsEdit(false);
+  if (props.setIsEdit!=undefined) {
+    props.setIsEdit(false);
+  }
   props.setOpenModal({ status: false });
-  cleanModal();
+  if (props.setProdutosVendidos!=undefined) {
+    props.setProdutosVendidos([])
+  }
+  cleanModal(props.campos, props.setCategoria);
 }
 
 export async function cleanModal(campos, setCategoria) {
