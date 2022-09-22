@@ -15,4 +15,5 @@ yarn.lock
 commit.sh
 .env
 *.pem
+dist
 test.js

@@ -1,16 +1,20 @@
 const mongoose = require('mongoose');
 
 const VendaSchema=new mongoose.Schema({
-    produtos:{
-        type:Array,
+    data:{
+        type:Date,
+        required:true,
+    },
+    formaDePagamento:{
+        type:String,
         required:true,
     },
     valor:{
         type:Number,
         required:true,
     },
-    data:{
-        type:Date,
+    produtos:{
+        type:Array,
         required:true,
     }
 });

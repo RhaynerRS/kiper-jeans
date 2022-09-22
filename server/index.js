@@ -37,7 +37,7 @@ app.post("/insertProduto", async (req, res) => {
 
   try {
     await produto.save();
-    res.send("Produto Inserido com Sucesso !!!");
+    res.send({message:"Produto inserido com sucesso!"});
   } catch (err) {
     if (
       req.body.obj.preco === undefined ||
@@ -84,51 +84,34 @@ app.put("/editProduto", async (req, res) => {
 //lidar com vendas
 app.post("/insertVenda", async (req, res) => {
   const venda = new VendaModel(req.body.obj);
-
   try {
+    await req.body.obj.produtos.forEach(async (produto) => {
+      const get = await ProdutoModel.find({_id:produto.value});
+      await ProdutoModel.findByIdAndUpdate(produto.value, {quantidade:(get[0].quantidade-parseInt(produto.qtd))});
+
+    })
     await venda.save();
+    res.send({message:"Produto inserido com sucesso!"});
   } catch (err) {
-    console.log(err);
+    if (
+      req.body.obj.data === undefined ||
+      req.body.obj.produtos === undefined ||
+      req.body.obj.formaDePagamento === undefined
+    ) {
+      res.status(400).send("Todos os campos são obrigatorios");
+    }
+    console.log(err)
   }
 });
 
 app.get("/getVenda", async (req, res) => {
-  var data = qs.stringify({
-    grant_type: "password",
-    username: process.env.REDE_USERNAME,
-    password: process.env.REDE_SENHA,
-  });
-  var config = {
-    method: "post",
-    url: "https://rl7-sandbox-api.useredecloud.com.br/oauth/token",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: "Basic " + process.env.REDE_AUTH,
-      Connection: "keep-alive",
-    },
-    data: data,
-  };
+  const get = await VendaModel.find();
 
-  axios(config)
-    .then((response) => {
-      axios({
-        method: "get",
-        url: `https://rl7-sandbox-api.useredecloud.com.br/merchant-statement/v1/sales?parentCompanyNumber=13381369&subsidiaries=13381369&startDate=2022-09-01&endDate=${dayjs().format("YYYY-MM-DD")}`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + response.data.access_token,
-        },
-      })
-        .then(function (response) {
-          res.send(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  try {
+    res.send(get);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.post("/deleteVenda", async (req, res) => {
