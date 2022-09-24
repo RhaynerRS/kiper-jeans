@@ -23,7 +23,7 @@ export function Data(props) {
       nome: <Produto name={item.nome} />,
       datanascimento: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {dayjs(item.datanascimento).format("DD-MM-YYYY")}
+          {dayjs(item.datanascimento).format("DD/MM/YYYY")}
         </MDTypography>
       ),
       documento: (
