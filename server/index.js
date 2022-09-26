@@ -37,7 +37,7 @@ app.post("/insertProduto", async (req, res) => {
 
   try {
     await produto.save();
-    res.send({message:"Produto inserido com sucesso!"});
+    res.send({ message: "Produto inserido com sucesso!" });
   } catch (err) {
     if (
       req.body.obj.preco === undefined ||
@@ -74,8 +74,8 @@ app.put("/editProduto", async (req, res) => {
   const update = await ProdutoModel.findByIdAndUpdate(req.body.id, req.body.obj);
 
   try {
-    update
-    res.send({message:"Produto alterado com sucesso!"});
+    update;
+    res.send({ message: "Produto alterado com sucesso!" });
   } catch (err) {
     res.send(err);
   }
@@ -86,12 +86,20 @@ app.post("/insertVenda", async (req, res) => {
   const venda = new VendaModel(req.body.obj);
   try {
     await req.body.obj.produtos.forEach(async (produto) => {
-      const get = await ProdutoModel.find({_id:produto.value});
-      await ProdutoModel.findByIdAndUpdate(produto.value, {quantidade:(get[0].quantidade-parseInt(produto.qtd))});
-
-    })
-    await venda.save();
-    res.send({message:"Produto inserido com sucesso!"});
+      const get = await ProdutoModel.find({ _id: produto.value });
+      await ProdutoModel.findByIdAndUpdate(produto.value, {
+        quantidade: get[0].quantidade - parseInt(produto.qtd),
+      });
+    });
+    if (dayjs().diff(req.body.obj.data, "days") > 30) {
+      res.status(400).send("Somente vendas dos ultimos 30 dias podem ser cadastradas.");
+    }else if(dayjs(req.body.obj.data)>dayjs()){
+      res.status(400).send("Uma venda não pode ter uma data maior que a atual.");
+    }
+    else {
+      await venda.save();
+      res.send({ message: "Produto inserido com sucesso!" });
+    }
   } catch (err) {
     if (
       req.body.obj.data === undefined ||
@@ -100,7 +108,7 @@ app.post("/insertVenda", async (req, res) => {
     ) {
       res.status(400).send("Todos os campos são obrigatorios");
     }
-    console.log(err)
+    console.log(err);
   }
 });
 
@@ -129,11 +137,14 @@ app.post("/deleteVenda", async (req, res) => {
 //lidar com Clientes
 app.post("/insertCliente", async (req, res) => {
   const cliente = new ClienteModel(req.body.obj);
-
   try {
-    console.log(req.body);
-    await cliente.save();
-    res.send("Cliente Inserido com Sucesso !!!");
+    console.log(dayjs().diff(req.body.obj.datanascimento, "years"))
+    if (dayjs().diff(req.body.obj.datanascimento, "years") < 18) {
+      res.status(400).send("Somente maiores de 18 anos podem ser clientes");
+    } else {
+      await cliente.save();
+      res.send({ message: "Cliente inserido com sucesso!" });
+    }
   } catch (err) {
     if (
       req.body.obj.datanascimento === "" ||
@@ -180,7 +191,7 @@ app.put("/editCliente", async (req, res) => {
       req.body.obj.celular === ""
     ) {
       res.status(400).send("Todos os campos são obrigatorios");
-    }else{
+    } else {
       res.send(err);
     }
   }

@@ -5,68 +5,129 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
-import ReportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+import { moda } from "../../functions/geral";
+import getCategoriasById from "../../functions/categorias";
 import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
-import Axios from "axios";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
+var utc = require("dayjs/plugin/utc");
+dayjs.extend(utc);
 
 function Dashboard() {
-  const { sales, tasks } = reportsLineChartData;
+  //variaveis
   const [clientes, setClientes] = useState([]);
   const [produtos, setProdutos] = useState([]);
   const [vendas, setVendas] = useState([]);
-  const [labels, setLabels] = useState([]);
-  const [vendasDiarias, setVendasDiarias] = useState([]);
+  const [bestCat, setBestCat] = useState({
+    labels: [],
+    datasets: { label: "Vendas", data: [] },
+  });
+  const [vendasDiarias, setVendasDiarias] = useState({
+    labels: [],
+    datasets: { label: "Vendas", data: [] },
+  });
+  const [receitaMensal, setReceitaMensal] = useState({
+    labels: [],
+    datasets: { label: "Vendas", data: [] },
+  });
 
+  //pega os dados necessarios
   function getData() {
-    setClientes(JSON.parse(sessionStorage.getItem("clientes")) || []);
-    setProdutos(JSON.parse(sessionStorage.getItem("produtos")) || []);
-    setVendas(JSON.parse(sessionStorage.getItem("vendas")) || []);
+    setTimeout(() => {
+      setClientes(JSON.parse(sessionStorage.getItem("clientes")) || []);
+      setProdutos(JSON.parse(sessionStorage.getItem("produtos")) || []);
+      setVendas(JSON.parse(sessionStorage.getItem("vendas")) || []);
+    }, 100);
   }
 
-  function ReportsBarChartData() {
+  //seta os dados do grafico de vendas diarias
+  function VendasSemanais() {
     const labelsTemp = [];
     const vendasDiariasTemp = [];
     for (let i = 6; i >= 0; i--) {
       labelsTemp.push(dayjs().subtract(i, "days").format("DD"));
       let vendasDiarias = 0;
       vendas.forEach((venda) => {
-        const diference = dayjs().diff(venda.saleDate, "day");
+        console.log();
+        const diference = dayjs().diff(dayjs(venda.data), "days");
         if (diference == i) {
           vendasDiarias++;
         }
       });
       vendasDiariasTemp.push(vendasDiarias);
     }
-
-    setLabels(labelsTemp);
-    setVendasDiarias(vendasDiariasTemp);
+    setVendasDiarias({
+      labels: labelsTemp,
+      datasets: { label: "Vendas", data: vendasDiariasTemp },
+    });
   }
 
+  //seta dos dados do grafico de categoria mais popular
+  function categoriasMaisVendidas() {
+    const data = [];
+    const labels = [];
+    const freq = [];
+
+    vendas.forEach((venda) => {
+      venda.produtos.forEach((item) => {
+        produtos.filter((prod) => {
+          if (prod._id == item.value) {
+            data.push(parseInt(prod.categoria));
+          }
+        });
+      });
+    });
+
+    let temp = data;
+    for (let i = 0; i < 3; i++) {
+      moda(temp).values.forEach((high) => {
+        if (labels.length < 3) {
+          labels.push(getCategoriasById([high]));
+          freq.push(moda(temp).max);
+          temp = temp.filter((el) => el != high);
+        }
+      });
+    }
+    setBestCat({
+      labels: labels,
+      datasets: { label: "Vendas", data: freq },
+    });
+  }
+
+  //seta os dados do grafico de receita Mensal
+  function calculaReceitaMensal() {
+    const dataTemp = [];
+    const labelTemp = [];
+    for (var i = 0; i < 12; i++) {
+      let vendasMes = 0;
+      vendas.forEach((venda) => {
+        if (dayjs(venda.data).month() == i && dayjs(venda.data).year() == dayjs().year()) {
+          vendasMes += venda.valor;
+        }
+      });
+      labelTemp.push(dayjs().month(i).format("MMM"));
+      dataTemp.push(vendasMes);
+    }
+    console.log(dataTemp);
+    setReceitaMensal({ labels: labelTemp, datasets: { label: "Receita", data: dataTemp } });
+  }
+
+  //executa as funçoes quando a pagina carrega
   useEffect(() => {
     getData();
-    ReportsBarChartData();
-    setInterval((x,y) => {
-      var objectAreSame=true;
-      for (let propName in x) {
-        if (x[propName]!==y[propName]){
-          objectAreSame=false;
-          console.log(x[propName])
-          break;
-        }
-      }
-      getData();
-      ReportsBarChartData();
-    },2000);
+    VendasSemanais();
+    categoriasMaisVendidas();
+    calculaReceitaMensal();
   }, []);
 
+  //executa as funçoes quando as variaveis mudam
   useEffect(() => {
-    ReportsBarChartData();
-  }, [vendas]);
+    VendasSemanais();
+    categoriasMaisVendidas();
+    calculaReceitaMensal();
+  }, [vendas, produtos]);
 
+  //receita total da loja
   let receita = 0;
   vendas.forEach((item) => {
     receita += item.valor;
@@ -130,7 +191,7 @@ function Dashboard() {
                   title="Vendas Semanais"
                   description="Veja a quantidade de vendas dos ultimos 7 dias"
                   date={dayjs().format("DD [de] MMMM")}
-                  chart={{ labels: labels, datasets: { label: "Vendas", data: vendasDiarias } }}
+                  chart={vendasDiarias}
                 />
               </MDBox>
             </Grid>
@@ -138,14 +199,14 @@ function Dashboard() {
               <MDBox mb={3}>
                 <ReportsBarChart
                   color="dark"
-                  title="Produtos Mais Vendidos"
-                  description={
-                    <>
-                      (<strong>+15%</strong>) increase in today sales.
-                    </>
+                  title="Categorias Populares"
+                  description="As categorias que mais vendem"
+                  date={
+                    vendas[0] != undefined
+                      ? `Desde ${dayjs(vendas[0].data).format("DD [de] MMMM")}`
+                      : ""
                   }
-                  date="updated 4 min ago"
-                  chart={sales}
+                  chart={bestCat}
                 />
               </MDBox>
             </Grid>
@@ -156,7 +217,7 @@ function Dashboard() {
                   title="Receita Mensal"
                   description="Last Campaign Performance"
                   date="just updated"
-                  chart={tasks}
+                  chart={receitaMensal}
                 />
               </MDBox>
             </Grid>
@@ -164,7 +225,7 @@ function Dashboard() {
         </MDBox>
         <MDBox>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={12}>
+            <Grid item xs={12} md={6} lg={8}>
               <Projects />
             </Grid>
           </Grid>
