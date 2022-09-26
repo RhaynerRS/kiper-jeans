@@ -47,10 +47,15 @@ function Clientes() {
   const [successSB, setSuccessSB] = useState(false);
   const [errorSB, setErrorSB] = useState(false);
   const [errorData, setErrorData] = useState("");
+  const [successData, setSuccessData] = useState("");
+
 
 
   //open and close notificaçoes
-  const openSuccessSB = () => setSuccessSB(true);
+  const openSuccessSB = (data) => {
+    setSuccessData(data);
+    setSuccessSB(true);
+  };
   const closeSuccessSB = () => setSuccessSB(false);
   const openErrorSB = (data) => {
     setErrorSB(true);
@@ -62,8 +67,8 @@ function Clientes() {
     <MDSnackbar
       color="success"
       icon="check"
-      title="Sucesso !"
-      content={"O Cliente foi adicionado"}
+      title={`Sucesso! status ${successData!==""?successData.status:"undefined"}`}
+      content={successData!==""?successData.message:"undefined"}
       open={successSB}
       onClose={closeSuccessSB}
       close={closeSuccessSB}
@@ -75,8 +80,8 @@ function Clientes() {
     <MDSnackbar
       color="error"
       icon="warning"
-      title={errorData.code || "undefined"}
-      content={errorData.message || "undefined"}
+      title={errorData !== "" ? errorData.code : "undefined"}
+      content={errorData !== "" ? errorData.response.data : "undefined"}
       open={errorSB}
       onClose={closeErrorSB}
       close={closeErrorSB}
@@ -93,7 +98,7 @@ function Clientes() {
           { name: "Nome", type: "text", default:(openModal.data!=undefined?openModal.data.nome:"") },
           { name: "Data Nascimento", type: "date", default:(openModal.data!=undefined?openModal.data.datanascimento:"") },
           { name: "Celular", type: "tel", default:(openModal.data!=undefined?openModal.data.celular:"") },
-          { name: "Documento", type: "number", default:(openModal.data!=undefined?openModal.data.documento:"") },
+          { name: "Documento", type: "text", default:(openModal.data!=undefined?openModal.data.documento:"") },
         ]}
         setOpenModal={setOpenModal}
         openModal={openModal.status}

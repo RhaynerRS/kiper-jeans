@@ -1,8 +1,9 @@
 import MDTypography from "components/MDTypography";
 import { useEffect, useState } from "react";
-import dayjs from "dayjs";
 import Dropdown from "components/Dropdown";
-
+import dayjs from "dayjs";
+var utc = require('dayjs/plugin/utc')
+dayjs.extend(utc);
 export function Data(props) {
   const rowsItem = [];
 
@@ -25,7 +26,7 @@ export function Data(props) {
       ),
       data: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {dayjs(item.data).format("DD/MM/YYYY")}
+          {dayjs(item.data).utc().format("DD/MM/YYYY")}
         </MDTypography>
       ),
       valor: (

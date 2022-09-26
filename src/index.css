@@ -19,13 +19,37 @@
   background: transparent;
 }
 
+.MuiGrid-container {
+  -webkit-animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
 
-@media (max-width: 1443px)
-{
+@-webkit-keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(100px);
+    transform: translateY(25px);
+  }
+}
+@keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(100px);
+    transform: translateY(25px);
+  }
+}
+
+@media (max-width: 1443px) {
   .css-znq6tb-MuiTypography-root {
     font-size: 0.75rem !important;
   }
-  .css-1tvc6i6-MuiTypography-root{
+  .css-1tvc6i6-MuiTypography-root {
     font-size: 1.2rem !important;
   }
 }

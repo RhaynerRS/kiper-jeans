@@ -4,9 +4,16 @@ import Dropdown from "components/Dropdown";
 
 //imports
 import dayjs from "dayjs";
+var utc = require('dayjs/plugin/utc')
+dayjs.extend(utc);
 
 export function Data(props) {
   const rowsItem = [];
+
+  function formataCPF(cpf){
+    cpf = cpf.replace(/[^\d]/g, "");
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  }
 
   const Produto = ({ name }) => (
     <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
@@ -23,12 +30,12 @@ export function Data(props) {
       nome: <Produto name={item.nome} />,
       datanascimento: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {dayjs(item.datanascimento).format("DD/MM/YYYY")}
+          {dayjs(item.datanascimento).utc().format("DD/MM/YYYY")}
         </MDTypography>
       ),
       documento: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {item.documento}
+          {formataCPF(item.documento.toString())}
         </MDTypography>
       ),
       acoes: (

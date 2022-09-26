@@ -26,7 +26,6 @@ function Vendas() {
 
   function getData() {
     SetItems(JSON.parse(sessionStorage.getItem("vendas")) || []);
-    console.log("xuaaaaaaaaaaaa")
   }
 
   //requisita a API para coletar dados atualizados

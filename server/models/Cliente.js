@@ -14,7 +14,7 @@ const ClienteSchema=new mongoose.Schema({
         required:true,
     },
     documento:{
-        type:Number,
+        type:String,
         required:true,
     }
 });

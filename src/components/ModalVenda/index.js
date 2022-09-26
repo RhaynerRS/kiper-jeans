@@ -44,7 +44,7 @@ export default function ModalVenda(props) {
   };
 
   const options = [],
-    produtos = JSON.parse(sessionStorage.getItem("produtos"));
+    produtos = JSON.parse(sessionStorage.getItem("produtos")).filter((prod)=>prod.quantidade>0);
 
   useEffect(() => {
     produtos.map((prod) => {
@@ -65,7 +65,6 @@ export default function ModalVenda(props) {
       soma+=produto.preco*produto.qtd;
     });
     setValor(soma);
-    console.log(valor)
   };
 
   const addProduto = async () => {
@@ -73,8 +72,11 @@ export default function ModalVenda(props) {
       ...prev,
       { ...selectedValue, qtd: document.getElementById("qtd").value },
     ]);
-    sumArray();
   };
+
+  useEffect(() => {
+    sumArray();
+  },[produtosVendidos])
 
   return (
     <div className="modal" style={props.openModal ? { display: "block" } : { display: "none" }}>
@@ -114,6 +116,7 @@ export default function ModalVenda(props) {
           >
             <div class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root ">
               <Select
+                placeholder="Forma de Pagamento..."
                 value={options.find((obj) => obj === selectedValue)}
                 options={[
                   { value: 1, label: "AVISTA" },
@@ -135,6 +138,7 @@ export default function ModalVenda(props) {
           >
             <div class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root ">
               <Select
+                placeholder="Produtos..."
                 options={options}
                 value={options.find((obj) => obj.value === selectedValue.value)}
                 styles={{

@@ -44,7 +44,7 @@ export default function ModalCliente(props) {
           documento: arrayCampos[3],
         },
       }).then(function (response) {
-        props.sucessNotification();
+        props.sucessNotification({message:response.data.message,status:response.status});
         props.refresh();
       })
       .catch(function (error) {
@@ -62,7 +62,7 @@ export default function ModalCliente(props) {
       })
         .then(function (response) {
           // I need this data here ^^
-          props.sucessNotification();
+          props.sucessNotification({message:response.data.message,status:response.status});
           props.refresh();
         })
         .catch(function (error) {

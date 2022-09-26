@@ -19,7 +19,6 @@ export default function Data() {
   function bestSellers(array) {
     for (let i = 0; i < array.length; i++) {
       for (let j = 0; j < i; j++) {
-        console.log(array[i].qtd);
         if (array[i].qtd > array[j].qtd) {
           let temp = array[i];
           array[i] = array[j];
@@ -43,11 +42,6 @@ export default function Data() {
             <MDTypography variant="caption" color="text" fontWeight="medium">
               {prod.qtd} un
             </MDTypography>
-          ),
-          completion: (
-            <MDBox width="8rem" textAlign="left">
-              <MDProgress value={60} color="info" variant="gradient" label={false} />
-            </MDBox>
           ),
         },
       ]);
@@ -82,7 +76,6 @@ export default function Data() {
       { Header: "Produto", accessor: "produto", width: "45%", align: "left" },
       { Header: "preco", accessor: "preco", align: "center" },
       { Header: "qtd. vendida", accessor: "quantidade", width: "15%", align: "center" },
-      { Header: "completion", accessor: "completion", align: "center" },
     ],
 
     rows: [...toDisplay],
