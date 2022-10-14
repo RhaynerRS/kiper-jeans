@@ -71,7 +71,7 @@ function Dashboard() {
     vendas.forEach((venda) => {
       venda.produtos.forEach((item) => {
         produtos.filter((prod) => {
-          if (prod._id == item.value) {
+          if (prod.id == item.value) {
             data.push(parseInt(prod.categoria));
           }
         });
@@ -215,8 +215,8 @@ function Dashboard() {
                 <ReportsLineChart
                   color="dark"
                   title="Receita Mensal"
-                  description="Last Campaign Performance"
-                  date="just updated"
+                  description="Quanto de dinheiro entro em cada mês do ano"
+                  date={`Ano de ${dayjs().year()}`}
                   chart={receitaMensal}
                 />
               </MDBox>

@@ -30,7 +30,7 @@ function Vendas() {
 
   //requisita a API para coletar dados atualizados
   const refresh = () => {
-    Axios.get("http://localhost:3002/getVenda").then((res) => {
+    Axios.get("https://kiper-jeans-api.azurewebsites.net/api/vendas/listarVendas",{ headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} }).then((res) => {
       sessionStorage.setItem("vendas", JSON.stringify(res.data));
       getData();
     });

@@ -54,38 +54,52 @@ export default function Modal(props) {
         : null;
     });
 
+    let headers = {
+      "Content-Type": "application/json",
+      api_key: "9d18a86d-dfee-47bc-9362-11888b5d9209",
+    };
+
     if (isEdit) {
-      Axios.put("http://localhost:3002/editProduto", {
-        id: props.data._id,
-        obj: {
+      Axios.put(
+        "https://kiper-jeans-api.azurewebsites.net/api/produtos/editarProduto/" + props.data.id,
+        {
+          id: props.data.id,
           name: arrayCampos[0],
-          categoria: select,
+          categoria: select.toString(),
           preco: arrayCampos[1],
           quantidade: arrayCampos[2],
           tamanhos: tamanhosDisponiveis,
         },
-      })
+        { headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} }
+      )
         .then(function (response) {
-          props.sucessNotification({message:response.data.message,status:response.status});
+          props.sucessNotification({ message: response.data.message, status: response.status });
           props.refresh();
         })
         .catch(function (error) {
           props.errorNotification(error);
         });
       setIsEdit(false);
-      closeModal({ setOpenModal: props.setOpenModal, setIsEdit: setIsEdit, campos:campos, setCategoria:setCategoria });
+      closeModal({
+        setOpenModal: props.setOpenModal,
+        setIsEdit: setIsEdit,
+        campos: campos,
+        setCategoria: setCategoria,
+      });
     } else {
-      Axios.post("http://localhost:3002/insertProduto", {
-        obj: {
+      Axios.post(
+        "https://kiper-jeans-api.azurewebsites.net/api/produtos/adicionarProduto/",
+        {
           name: arrayCampos[0],
-          categoria: select,
+          categoria: select.toString(),
           preco: arrayCampos[1],
           quantidade: arrayCampos[2],
           tamanhos: tamanhosDisponiveis,
         },
-      })
+        { headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} }
+      )
         .then(function (response) {
-          props.sucessNotification({message:response.data.message,status:response.status});
+          props.sucessNotification({ message: response.data.message, status: response.status });
           props.refresh();
         })
         .catch(function (error) {
@@ -113,7 +127,14 @@ export default function Modal(props) {
           </MDTypography>
           <Icon
             className="close"
-            onClick={() => closeModal({ setOpenModal: props.setOpenModal, setIsEdit: setIsEdit, campos:campos, setCategoria:setCategoria })}
+            onClick={() =>
+              closeModal({
+                setOpenModal: props.setOpenModal,
+                setIsEdit: setIsEdit,
+                campos: campos,
+                setCategoria: setCategoria,
+              })
+            }
           >
             close
           </Icon>

@@ -13,7 +13,6 @@
     "npm": ">=6"
   },
   "dependencies": {
-    "@electron/remote": "^2.0.8",
     "@emotion/cache": "11.7.1",
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
@@ -29,7 +28,6 @@
     "concurrently": "^7.3.0",
     "cross-env": "^7.0.3",
     "dayjs": "^1.11.5",
-    "electron-is-dev": "^2.0.0",
     "express": "^4.18.1",
     "mkcert": "^1.5.1",
     "mongodb": "^4.9.0",
@@ -45,19 +43,18 @@
     "react-select": "^5.4.0",
     "react-table": "7.7.0",
     "stylis": "4.0.13",
-    "stylis-plugin-rtl": "2.1.1",
+    "stylis-plugin-rtl": "^2.1.1",
     "web-vitals": "2.1.4",
     "yup": "0.32.11"
   },
-  "main": "public/main.js",
   "homepage": "./",
   "scripts": {
     "start": "cross-env HTTPS=true SSL_CRT_FILE=localhost.pem SSL_KEY_FILE=localhost-key.pem  react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "electron:serve": "concurrently -k \"cross-env BROWSER=none npm run start\" \"npm run electron:start\"",
-    "electron:build": "npm run build && electron-builder -c.extraMetadata.main=build/main.js",
-    "electron:start": "wait-on tcp:3000 && electron .",
+    "neutralino:serve": "concurrently -k \"cross-env BROWSER=none npm run start\" \"npm run neutralino:start\"",
+    "neutralino:build": "npm run build && neu build",
+    "neutralino:start": "wait-on tcp:3000 && neu run --frontend-lib-dev",
     "open": "concurrently -k \"npm run electron:serve\" \"cd server && npm run server\""
   },
   "build": {
@@ -93,8 +90,6 @@
   },
   "devDependencies": {
     "eslint": "8.8.0",
-    "electron": "^20.0.3",
-    "electron-builder": "^23.3.3",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.25.4",

@@ -21,7 +21,7 @@ export function Data(props) {
     rowsItem.push({
       cod: (
         <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-          {item._id}
+          {item.id}
         </MDTypography>
       ),
       data: (
@@ -44,7 +44,7 @@ export function Data(props) {
       produtos: (
         <MDTypography component="p" variant="button" color="text" fontWeight="medium">
           <Dropdown
-            id={item._id}
+            id={item.id}
             item={item}
             produtos={item.produtos}
             delete="deleteProduto"

@@ -1,0 +1,35 @@
+{
+  "applicationId": "kiper.jeans",
+  "version": "1.0.0",
+  "defaultMode": "window",
+  "documentRoot": "/build/",
+  "url": "/",
+  "enableServer": true,
+  "enableNativeAPI": true,
+  "port": 22053,
+  "nativeAllowList": [
+    "app.*"
+  ],
+  "modes": {
+    "window": {
+      "title": "Kiper Jeans Controle",
+      "width": 1360,
+      "height": 768,
+      "minWidth": 1360,
+      "minHeight": 768,
+      "icon": "/public/icon.png"
+    }
+  },
+  "cli": {
+    "binaryName": "neutralino",
+    "resourcesPath": "/build/",
+    "extensionsPath": "/extensions/",
+    "clientLibrary": "/public/neutralino.js",
+    "frontendLibrary": {
+      "patchFile": "/public/index.html",
+      "devUrl": "https://localhost:3000"
+    },
+    "binaryVersion": "4.7.0",
+    "clientVersion": "3.6.0"
+  }
+}

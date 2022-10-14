@@ -71,9 +71,12 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
+  let headers = process.env.REACT_APP_APIKEY;
+
   //requisiçoes de todas as API's
   const getData = async () => {
-    await Axios.get("http://localhost:3002/getVenda")
+    console.log(headers);
+    await Axios.get("https://kiper-jeans-api.azurewebsites.net/api/vendas/listarVendas", { headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} })
       .then(function (response) {
         sessionStorage.setItem("vendas", JSON.stringify(response.data));
       })
@@ -81,7 +84,7 @@ export default function App() {
         console.log(error);
       });
 
-    await Axios.get("http://localhost:3002/getProduto")
+    await Axios.get("https://kiper-jeans-api.azurewebsites.net/api/produtos/listarProdutos", { headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} })
       .then((response) => {
         sessionStorage.setItem("produtos", JSON.stringify(response.data));
       })
@@ -89,7 +92,7 @@ export default function App() {
         console.log(error);
       });
 
-    await Axios.get("http://localhost:3002/getCliente")
+    await Axios.get("https://kiper-jeans-api.azurewebsites.net/api/clientes/listarClientes", { headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} })
       .then((response) => {
         sessionStorage.setItem("clientes", JSON.stringify(response.data));
       })
@@ -100,7 +103,7 @@ export default function App() {
 
   //faz as requisiçoes a cada 5 minutos
   useEffect(() => {
-    setTimeout(getData(),1500)
+    setTimeout(getData(), 1500);
     const interval = setInterval(() => {
       getData();
       console.log("refresh");

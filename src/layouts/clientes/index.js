@@ -28,7 +28,7 @@ function Clientes() {
 
   //requisita a API para coletar dados atualizados
   const refresh = () => {
-    Axios.get("http://localhost:3002/getCliente").then((res) => {
+    Axios.get("https://kiper-jeans-api.azurewebsites.net/api/clientes/listarClientes",{ headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} }).then((res) => {
       sessionStorage.setItem("clientes", JSON.stringify(res.data));
       getData();
     });

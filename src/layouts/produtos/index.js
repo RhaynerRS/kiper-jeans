@@ -23,13 +23,15 @@ function Produtos() {
   const [errorData, setErrorData] = useState("");
   const [successData, setSuccessData] = useState("");
 
+  
+
   function getData() {
     SetItems(JSON.parse(sessionStorage.getItem("produtos")) || []);
   }
 
   //requisita a API para coletar dados atualizados
   const refresh = () => {
-    Axios.get("http://localhost:3002/getProduto").then((res) => {
+    Axios.get("https://kiper-jeans-api.azurewebsites.net/api/produtos/listarProdutos", { headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} }).then((res) => {
       sessionStorage.setItem("produtos", JSON.stringify(res.data));
       getData();
     });

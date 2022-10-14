@@ -10,17 +10,17 @@ export default function Dropdown(props) {
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
 
+  
+
   //delete o item e da refresh no componente
   const deleteItem = (id) => {
-    Axios.post(`http://localhost:3002/${props.delete}`, {
-      id: id,
-    }).then(async () => (await props.refresh(), setOpenMenu(false)));
+    Axios.delete(`https://kiper-jeans-api.azurewebsites.net/api/${props.delete}/`+id,{ headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} }).then(async () => (await props.refresh(), setOpenMenu(false)));
   };
 
   const editItem = (item) => {
     props.edit({ status: true, data: item });
     setOpenMenu(false);
-    console.log(item);
+    console.log(process.env.REACT_APP_APIKEY);
   };
 
   const renderItems = () => {

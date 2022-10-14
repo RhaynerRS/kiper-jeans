@@ -35,15 +35,13 @@ export default function ModalCliente(props) {
     });
 
     if (isEdit){
-      Axios.put("http://localhost:3002/editCliente",{
-        id: props.data._id,
-        obj: {
+      Axios.put("https://kiper-jeans-api.azurewebsites.net/api/clientes/editarCliente/"+props.data.id,{
+          id:props.data.id,
           nome: arrayCampos[0],
           datanascimento: arrayCampos[1],
           celular: arrayCampos[2],
           documento: arrayCampos[3],
-        },
-      }).then(function (response) {
+      },{ headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} }).then(function (response) {
         props.sucessNotification({message:response.data.message,status:response.status});
         props.refresh();
       })
@@ -52,14 +50,12 @@ export default function ModalCliente(props) {
       });
       closeModal({ setOpenModal: props.setOpenModal, setIsEdit: setIsEdit });
     }else{
-      Axios.post("http://localhost:3002/insertCliente", {
-        obj: {
+      Axios.post("https://kiper-jeans-api.azurewebsites.net/api/clientes/adicionarCliente", {
           nome: arrayCampos[0],
           datanascimento: arrayCampos[1],
           celular: arrayCampos[2],
           documento: arrayCampos[3],
-        },
-      })
+      },{ headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} })
         .then(function (response) {
           // I need this data here ^^
           props.sucessNotification({message:response.data.message,status:response.status});

@@ -25,14 +25,12 @@ export default function ModalVenda(props) {
       return arrayCampos.push(item.value);
     });
 
-    Axios.post("http://localhost:3002/insertVenda", {
-      obj: {
+    Axios.post("https://kiper-jeans-api.azurewebsites.net/api/vendas/adicionarVenda", {
         data: arrayCampos[0],
         formaDePagamento: selectedValuePagamento.label,
         valor: valor,
         produtos: produtosVendidos,
-      },
-    })
+    },{ headers:  {"Content-Type": "application/json",api_key: process.env.REACT_APP_APIKEY} })
       .then(function (response) {
         props.sucessNotification({message:response.data.message,status:response.status});
         props.refresh()
@@ -48,7 +46,7 @@ export default function ModalVenda(props) {
 
   useEffect(() => {
     produtos.map((prod) => {
-      options.push({ value: prod._id, label: prod.name, preco: prod.preco });
+      options.push({ value: prod.id, label: prod.name, preco: prod.preco });
     });
   }, [produtos]);
 
